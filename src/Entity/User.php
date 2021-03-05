@@ -12,11 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
-
-
     /**
      * @ORM\Id
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $cin;
 
@@ -75,19 +73,16 @@ class User
         $this->commandes = new ArrayCollection();
     }
 
-
-
-
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
 
     public function getId(): ?string
     {
         return $this->cin;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
 
     public function setNom(string $nom): self
     {
@@ -221,9 +216,6 @@ class User
 
         return $this;
     }
-
-
-
 
 
 }

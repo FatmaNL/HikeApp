@@ -14,7 +14,7 @@ class Commande
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer", )
      */
     private $refcommande;
 
@@ -30,12 +30,9 @@ class Commande
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
+     * @ORM\JoinColumn(name="user_cin", referencedColumnName="cin")
      */
     private $user;
-
-
-
-
 
     public function getId(): ?string
     {
