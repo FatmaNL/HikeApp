@@ -23,7 +23,7 @@ class Commande
     private $datecommande;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=250)
      */
     private $etat;
 
