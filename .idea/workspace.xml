@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/evenement/add.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/FrontOffice/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +150,7 @@
       <workItem from="1614781836365" duration="5863000" />
       <workItem from="1614802515734" duration="9455000" />
       <workItem from="1614853292749" duration="2873000" />
-      <workItem from="1614926724378" duration="15196000" />
+      <workItem from="1614926724378" duration="20339000" />
     </task>
     <servers />
   </component>
