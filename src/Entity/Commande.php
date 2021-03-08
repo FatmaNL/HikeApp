@@ -33,10 +33,6 @@ class Commande
      */
     private $user;
 
-
-
-
-
     public function getId(): ?string
     {
         return $this->refcommande;
