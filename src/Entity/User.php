@@ -78,9 +78,16 @@ class User
         return $this->nom;
     }
 
-    public function getId(): ?string
+    public function getCin(): ?string
     {
         return $this->cin;
+    }
+
+    public function setCin(string $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
     }
 
 

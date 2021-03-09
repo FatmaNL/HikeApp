@@ -56,7 +56,7 @@ class EvenementController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('evenement');
         }
-        return $this->render('evenement/add.html.twig', [
+        return $this->render('evenement/addProduite.html.twig', [
             'form' => $form->createView()
         ]);
 

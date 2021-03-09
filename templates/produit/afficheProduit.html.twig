@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form method="post" action="{{ path('recherche') }}">
+    <label>recherche</label>
+    <input type="text" name="search"><input type="submit" value="recherche">
+</form>
+<table border="1">
+    <tr>
+        <td>NumProduit</td>
+        <td>NomProduit</td>
+        <td>Quantite</td>
+        <td>Prix</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr {% for p in produit1 %}>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nomproduit }}</td>
+        <td>{{ p.quantite }}</td>
+        <td>{{ p.prix }}</td>
+        <td><a href="{{ path('update',{'id':p.id}) }}">Update</a></td>
+        <td><a href="{{ path('d',{'id':p.id}) }}">Delete</a></td>
+    </tr {% endfor %}>
+</table>
+<a href="{{ path('addproduit') }}">Ajouter</a>
+</body>
+</html>
