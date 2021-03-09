@@ -31,12 +31,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/commande/add.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/commande/update.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="heni">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commande.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,8 +181,16 @@
       <workItem from="1614853292749" duration="2873000" />
       <workItem from="1614926724378" duration="21747000" />
       <workItem from="1615237281870" duration="4613000" />
-      <workItem from="1615282710440" duration="6637000" />
+      <workItem from="1615282710440" duration="7740000" />
     </task>
+    <task id="LOCAL-00001" summary="heni">
+      <created>1615306150662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615306150662</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,10 +208,18 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="heni" />
+    <option name="LAST_COMMIT_MESSAGE" value="heni" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="413" y="123" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615299300323">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="123" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1615299300323" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1615306380270">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1615306380270" />
   </component>
 </project>
