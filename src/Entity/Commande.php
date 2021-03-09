@@ -33,15 +33,23 @@ class Commande
      */
     private $user;
 
-    public function getId(): ?string
+    public function getrefcommande(): ?string
     {
         return $this->refcommande;
     }
+    public function setrefcommande(string $refcommande): self
+    {
+        $this->refcommande = $refcommande;
+
+        return $this;
+    }
+
 
     public function getDatecommande(): ?\DateTimeInterface
     {
         return $this->datecommande;
     }
+
 
     public function setDatecommande(\DateTimeInterface $datecommande): self
     {
