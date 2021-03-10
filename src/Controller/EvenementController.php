@@ -20,7 +20,7 @@ class EvenementController extends AbstractController
     public function index(EvenementRepository $event): Response
     {
         $evenement = $event->findAll();
-        return $this->render('FrontOffice/404.html.twig', [
+        return $this->render('evenement/index.html.twig', [
             'controller_name' => 'EvenementController',
             'evenement1' => $evenement
         ]);
@@ -56,14 +56,14 @@ class EvenementController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('evenement');
         }
-        return $this->render('evenement/addProduite.html.twig', [
+        return $this->render('evenement/add.html.twig', [
             'form' => $form->createView()
         ]);
 
     }
 
     /**
-     * @Route ("suppevent/{id}",name="supp")
+     * @Route ("deleteevent/{id}",name="delete")
      */
 
     public function delete($id, EvenementRepository $repo){
@@ -73,6 +73,24 @@ class EvenementController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('evenement');
+    }
+
+    /**
+     * @Route("evenement/update/{id}",name="updateevent")
+     */
+    public function update(EvenementRepository $event,$id,Request $req){
+        $evenement=$event->find($id);
+        $form=$this->createForm(EvenementType::class,$evenement);
+        $form->add('Modifier',SubmitType::class);
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute('evenement');
+        }
+        return $this->render('evenement/update.html.twig',[
+            'formupdate'=>$form->createView()
+        ]);
     }
 
 }

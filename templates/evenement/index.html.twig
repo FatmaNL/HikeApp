@@ -21,7 +21,8 @@
         <td>informations</td>
         <td>type</td>
         <td>circuit</td>
-        <td>ACTION</td>
+        <td></td>
+        <td></td>
 
     </tr>
 
@@ -38,7 +39,8 @@
         <td>{{ e.infos }}</td>
         <td>{{ e.type }}</td>
         <td>{{ e.circuit }}</td>
-        <td><a href="{{ path ('supp',{'id':e.id}) }}">Supprimer</a></td>
+        <td><a href="{{ path ('delete',{'id':e.id}) }}">Supprimer</a></td>
+        <td><a href="{{ path ('updateevent',{'id':e.id}) }}">Modifier</a></td>
     </tr {% endfor %}>
 
 </table>
