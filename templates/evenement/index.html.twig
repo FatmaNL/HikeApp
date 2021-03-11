@@ -13,7 +13,7 @@
         <td>depart</td>
         <td>destination</td>
         <td>nombre participants</td>
-        <td>Date Debut</td>
+        <td>Date</td>
         <td>Durée</td>
         <td>prix</td>
         <td>programme</td>
@@ -30,8 +30,8 @@
         <td>{{ e.depart }}</td>
         <td>{{ e.destination }}</td>
         <td>{{ e.nbparticipant }}</td>
-        <td>{{ e.nbparticipant }}</td>
-        <td>{{ e.nbparticipant }}</td>s
+        <td>{{ e.dateevenement| date('Y-m-d') }}</td>
+        <td>{{ e.duree }}</td>s
         <td>{{ e.prix }}</td>
         <td>{{ e.programme }}</td>
         <td>{{ e.contact }}</td>

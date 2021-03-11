@@ -37,7 +37,7 @@ class Evenement
     /**
      * @ORM\Column(type="date")
      */
-    private $datedebut;
+    private $dateevenement;
 
     /**
      * @ORM\Column(type="integer")
@@ -133,14 +133,14 @@ class Evenement
         return $this;
     }
 
-    public function getDatedebut(): ?\DateTimeInterface
+    public function getDateevenement(): ?\DateTimeInterface
     {
-        return $this->datedebut;
+        return $this->dateevenement;
     }
 
-    public function setDatedebut(\DateTimeInterface $datedebut): self
+    public function setDateevenement(\DateTimeInterface $dateevenement): self
     {
-        $this->datedebut = $datedebut;
+        $this->dateevenement = $dateevenement;
 
         return $this;
     }
