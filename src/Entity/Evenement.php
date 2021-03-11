@@ -40,9 +40,9 @@ class Evenement
     private $datedebut;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
-    private $datefin;
+    private $duree;
 
     /**
      * @ORM\Column(type="float")
@@ -145,14 +145,14 @@ class Evenement
         return $this;
     }
 
-    public function getDatefin(): ?\DateTimeInterface
+    public function getDuree(): ?int
     {
-        return $this->datefin;
+        return $this->duree;
     }
 
-    public function setDatefin(\DateTimeInterface $datefin): self
+    public function setDuree(int $duree): self
     {
-        $this->datefin = $datefin;
+        $this->duree = $duree;
 
         return $this;
     }

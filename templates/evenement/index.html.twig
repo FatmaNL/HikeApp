@@ -10,11 +10,11 @@
 <body>
 <table border="1">
     <tr>
-        <td>id</td>
         <td>depart</td>
         <td>destination</td>
         <td>nombre participants</td>
-
+        <td>Date Debut</td>
+        <td>Durée</td>
         <td>prix</td>
         <td>programme</td>
         <td>contact</td>
@@ -27,7 +27,6 @@
     </tr>
 
     <tr {% for e in evenement %}>
-        <td>{{ e.id }}</td>
         <td>{{ e.depart }}</td>
         <td>{{ e.destination }}</td>
         <td>{{ e.nbparticipant }}</td>
@@ -39,8 +38,8 @@
         <td>{{ e.infos }}</td>
         <td>{{ e.type }}</td>
         <td>{{ e.circuit }}</td>
-        <td><a href="{{ path ('delete',{'id':e.id}) }}">Supprimer</a></td>
         <td><a href="{{ path ('updateevent',{'id':e.id}) }}">Modifier</a></td>
+        <td><a href="{{ path ('delete',{'id':e.id}) }}">Supprimer</a></td>
     </tr {% endfor %}>
 
     <td><a href="{{ path ('addevent') }}">Ajouter un evenement</a></td>
