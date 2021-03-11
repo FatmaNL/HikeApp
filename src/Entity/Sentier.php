@@ -42,6 +42,16 @@ class Sentier
      */
     private $destinationsentier;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="sentiers")
+     */
+    private $randonnee;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $no;
+
     public function getId(): ?int
     {
         return $this->idsentier;
@@ -103,6 +113,30 @@ class Sentier
     public function setDestinationsentier(string $destinationsentier): self
     {
         $this->destinationsentier = $destinationsentier;
+
+        return $this;
+    }
+
+    public function getRandonnee(): ?Evenement
+    {
+        return $this->randonnee;
+    }
+
+    public function setRandonnee(?Evenement $randonnee): self
+    {
+        $this->randonnee = $randonnee;
+
+        return $this;
+    }
+
+    public function getNo(): ?string
+    {
+        return $this->no;
+    }
+
+    public function setNo(?string $no): self
+    {
+        $this->no = $no;
 
         return $this;
     }

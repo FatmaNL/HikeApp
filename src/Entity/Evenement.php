@@ -74,6 +74,16 @@ class Evenement
      */
     private $circuit;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Sentier::class, mappedBy="randonnee")
+     */
+    private $sentiers;
+
+    public function __construct()
+    {
+        $this->sentiers = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -209,6 +219,36 @@ class Evenement
     public function setCircuit(?string $circuit): self
     {
         $this->circuit = $circuit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sentier[]
+     */
+    public function getSentiers(): Collection
+    {
+        return $this->sentiers;
+    }
+
+    public function addSentier(Sentier $sentier): self
+    {
+        if (!$this->sentiers->contains($sentier)) {
+            $this->sentiers[] = $sentier;
+            $sentier->setRandonnee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentier(Sentier $sentier): self
+    {
+        if ($this->sentiers->removeElement($sentier)) {
+            // set the owning side to null (unless already changed)
+            if ($sentier->getRandonnee() === $this) {
+                $sentier->setRandonnee(null);
+            }
+        }
 
         return $this;
     }
