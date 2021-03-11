@@ -22,7 +22,7 @@ class EvenementController extends AbstractController
         $evenement = $event->findAll();
         return $this->render('evenement/index.html.twig', [
             'controller_name' => 'EvenementController',
-            'evenement1' => $evenement
+            'evenement' => $evenement
         ]);
     }
 
@@ -35,7 +35,7 @@ class EvenementController extends AbstractController
     public function affiche(EvenementRepository $event)
     {
         $evenement = $event->findAll();
-        return $this->render('evenement/index.html.twig', ['evenement1' => $evenement]);
+        return $this->render('evenement/index.html.twig', ['evenement' => $evenement]);
     }
 
     /**
@@ -92,5 +92,16 @@ class EvenementController extends AbstractController
             'formupdate'=>$form->createView()
         ]);
     }
+
+    /**
+     * @Route("evenement/search",name="search")
+     */
+    public function recherche(EvenementRepository $repo,Request $req){
+        $data=$req->get('search');
+        $evenement=$repo->findBy(['depart'=>$data]);
+        return $this->render('evenement/index.html.twig',
+            ['evenement'=>$evenement]);
+    }
+
 
 }
