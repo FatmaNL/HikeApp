@@ -27,6 +27,11 @@ class Transport
      */
     private $volumemax;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="transports")
+     */
+    private $camping;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Transport
     public function setVolumemax(int $volumemax): self
     {
         $this->volumemax = $volumemax;
+
+        return $this;
+    }
+
+    public function getCamping(): ?Evenement
+    {
+        return $this->camping;
+    }
+
+    public function setCamping(?Evenement $camping): self
+    {
+        $this->camping = $camping;
 
         return $this;
     }

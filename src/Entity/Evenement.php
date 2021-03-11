@@ -79,9 +79,15 @@ class Evenement
      */
     private $sentiers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="camping")
+     */
+    private $transports;
+
     public function __construct()
     {
         $this->sentiers = new ArrayCollection();
+        $this->transports = new ArrayCollection();
     }
 
 
@@ -247,6 +253,36 @@ class Evenement
             // set the owning side to null (unless already changed)
             if ($sentier->getRandonnee() === $this) {
                 $sentier->setRandonnee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transport[]
+     */
+    public function getTransports(): Collection
+    {
+        return $this->transports;
+    }
+
+    public function addTransport(Transport $transport): self
+    {
+        if (!$this->transports->contains($transport)) {
+            $this->transports[] = $transport;
+            $transport->setCamping($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransport(Transport $transport): self
+    {
+        if ($this->transports->removeElement($transport)) {
+            // set the owning side to null (unless already changed)
+            if ($transport->getCamping() === $this) {
+                $transport->setCamping(null);
             }
         }
 
