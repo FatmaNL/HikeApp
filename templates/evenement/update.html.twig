@@ -19,7 +19,34 @@
               <span>Évènements</span>
           </a>
           <ul class="sub" >
-              <li><a href="{{ path ('addevent') }}">Nouvel Évenement</a></li>
+              <li><a href="{{ path('evenement') }}">Mes Évenements</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('sentier') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Sentiers</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('sentier') }}">Liste des Sentiers</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addsentier') }}">Nouveau Sentier</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('transport') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Transport</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('transport') }}">Liste des Transports</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addtransport') }}">Nouveau Transport</a></li>
           </ul>
       </li>
       <li class="sub-menu">
@@ -33,40 +60,6 @@
               <i class="fa fa-cogs"></i>
               <span>Produits</span>
           </a>
-      </li>
-      <li class="sub-menu">
-          <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Sentiers</span>
-          </a>
-      <li>
-          <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
-          </a>
-      </li>
-      <li class="sub-menu">
-          <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-          </a>
-          <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
-          </ul>
-      </li>
-      <li class="sub-menu">
-          <a href="javascript:;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-          </a>
-          <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-          </ul>
       </li>
       <li>
           <a href="google_maps.html">

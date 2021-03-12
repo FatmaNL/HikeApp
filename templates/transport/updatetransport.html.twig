@@ -1,2 +1,94 @@
-<h1>Modifier transport</h1>
-{{ form(formupdatetr) }}
+{% extends "backoffice-base.html.twig" %}
+
+{% form_theme formupdatetr 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Modifier Évenement{% endblock title %}
+
+{% block sidebar %}
+<div id="sidebar" class="nav-collapse ">
+  <ul class="sidebar-menu" id="nav-accordion">
+      <p class="centered">
+        <a href="profile.html">
+          <img src="{{asset('img/ui-sam.jpg')}}" class="img-circle" width="80">
+        </a>
+      </p>
+      <h5 class="centered">HikeApp Organisateur</h5>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('evenement') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Évènements</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('evenement') }}">Mes Évenements</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('sentier') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Sentiers</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('sentier') }}">Liste des Sentiers</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addsentier') }}">Nouveau Sentier</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('transport') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Transport</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('transport') }}">Liste des Transports</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addtransport') }}">Nouveau Transport</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Commandes</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Produits</span>
+          </a>
+      </li>
+      <li>
+          <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+          </a>
+      </li>
+  </ul>
+</div>
+{% endblock sidebar %}
+
+{% block main %}
+
+<section class="wrapper">
+	<h3><i class="fa fa-angle-right"></i> Les Sentiers</h3>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-panel" style="padding: 15px">
+				{{ form_start(formupdatetr, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+                {{ form_row(formupdatetr.type,{'label' : 'Type :'} , {'attr' : {'placeholder': 'Type' }} ) }}
+
+				{# {{ form_errors(formupdate.depart) }} #}
+				{{ form_label(formupdatetr.volumemax, "Volume Max: ") }}
+				{{ form_widget(formupdatetr.volumemax, {'attr' : {'placeholder': 'Volume max' }})}}
+
+				{{ form_end(formupdatetr) }}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock main %}
