@@ -1,2 +1,112 @@
-<h1>update event</h1>
-{{ form(formupdate) }}
+{% extends "backoffice-base.html.twig" %}
+
+{% form_theme formupdate 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Modifier Évenement{% endblock title %}
+
+{% block sidebar %}
+<div id="sidebar" class="nav-collapse ">
+  <ul class="sidebar-menu" id="nav-accordion">
+      <p class="centered">
+        <a href="profile.html">
+          <img src="{{asset('img/ui-sam.jpg')}}" class="img-circle" width="80">
+        </a>
+      </p>
+      <h5 class="centered">HikeApp Organisateur</h5>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('evenement') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Évènements</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path ('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Commandes</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Produits</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span>Sentiers</span>
+          </a>
+      <li>
+          <a href="inbox.html">
+              <i class="fa fa-envelope"></i>
+              <span>Mail </span>
+              <span class="label label-theme pull-right mail-info">2</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class=" fa fa-bar-chart-o"></i>
+              <span>Charts</span>
+          </a>
+          <ul class="sub">
+              <li><a href="morris.html">Morris</a></li>
+              <li><a href="chartjs.html">Chartjs</a></li>
+              <li><a href="flot_chart.html">Flot Charts</a></li>
+              <li><a href="xchart.html">xChart</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-comments-o"></i>
+              <span>Chat Room</span>
+          </a>
+          <ul class="sub">
+              <li><a href="lobby.html">Lobby</a></li>
+              <li><a href="chat_room.html"> Chat Room</a></li>
+          </ul>
+      </li>
+      <li>
+          <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+          </a>
+      </li>
+  </ul>
+</div>
+{% endblock sidebar %}
+
+{% block main %}
+
+<section class="wrapper">
+	<h3><i class="fa fa-angle-right"></i> Les Évènements</h3>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-panel" style="padding: 15px">
+				{{ form_start(formupdate, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+                {{ form_row(formupdate.nomevenement,{'label' : 'Nom :'} , {'attr' : {'placeholder': 'Nom' }} ) }}
+
+				{# {{ form_errors(formupdate.depart) }} #}
+				{{ form_label(formupdate.depart, "Depart: ") }}
+				{{ form_widget(formupdate.depart, {'attr' : {'placeholder': 'Depart' }})}}
+
+				{{ form_row(formupdate.destination,{'label' : 'Destination :'} , {'attr' : {'placeholder': 'Destination' }} ) }}
+				{{ form_row(formupdate.nbparticipant,{'label' : 'Nombre des participants :'} , {'attr' : {'placeholder': 'participants' }} ) }}
+				{{ form_row(formupdate.dateevenement,{'label' : 'Date :'}) }}
+				{{ form_row(formupdate.duree,{'label' : 'Durée :'}, {'attr' : {'placeholder': 'Durée' }} ) }}
+				{{ form_row(formupdate.prix,{'label' : 'Prix :'}, {'attr' : {'placeholder': 'Prix' }} ) }}
+				{{ form_row(formupdate.programme,{'label' : 'Programme :'}, {'attr' : {'placeholder': 'Programme' }} ) }}
+				{{ form_row(formupdate.contact,{'label' : 'Contact :'}, {'attr' : {'placeholder': 'Contact' }} ) }}
+				{{ form_row(formupdate.infos,{'label' : 'Informations :'}, {'attr' : {'placeholder': 'Informations' }} ) }}
+				{{ form_row(formupdate.type,{'label' : 'Type :'}, {'attr' : {'placeholder': 'Rando/Camp' }} ) }}
+				{{ form_row(formupdate.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
+
+				{{ form_end(formupdate) }}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock main %}

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\TypeValidator;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -24,24 +25,38 @@ class Evenement
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="ce champ est obligatoire")
+     * @Assert\Type(
+     *     type="string",
+     *     message="la valeur n'est pas valide {{ type }}."
+     * )
      */
     private $depart;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="ce champ est obligatoire")
+     * @Assert\Type(
+     *     type="string",
+     *     message="la valeur n'est pas valide {{ type }}."
+     * )
      */
     private $destination;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="ce champ est obligatoire")
+     * @Assert\Length(max="2")
+     * @Assert\Type(
+     *     type="integer",
+     *     message="la valeur n'est pas valide {{ type }}."
+     * )
      */
     private $nbparticipant;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank(message="ce champ est obligatoire")
+
      */
     private $dateevenement;
 
@@ -96,6 +111,14 @@ class Evenement
      * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="camping")
      */
     private $transports;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
+     * @Assert\Type("string")
+     * @Assert\Unique(message="ce nom est déja utilisé")
+     */
+    private $nomevenement;
 
     public function __construct()
     {
@@ -298,6 +321,18 @@ class Evenement
                 $transport->setCamping(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNomevenement(): ?string
+    {
+        return $this->nomevenement;
+    }
+
+    public function setNomevenement(string $nomevenement): self
+    {
+        $this->nomevenement = $nomevenement;
 
         return $this;
     }
