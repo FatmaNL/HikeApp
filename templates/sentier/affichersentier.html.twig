@@ -16,7 +16,6 @@
         <td>difficulte</td>
         <td>departsentier</td>
         <td>destinationsentier</td>
-        <td>randonnee</td>
         <td></td>
         <td></td>
 
@@ -29,12 +28,11 @@
         <td>{{ s.difficulte }}</td>
         <td>{{ s.departsentier }}</td>
         <td>{{ s.destinationsentier }}</td>
-        <td>{{ s.randonne }}</td>
         <td><a href="{{ path ('updatesentier',{'id':s.id}) }}">Modifier</a></td>
         <td><a href="{{ path ('deletesentier',{'id':s.id}) }}">Supprimer</a></td>
     </tr {% endfor %}>
 
-    <td><a href="{{ path ('addsentier') }}">Ajouter un evenement</a></td>
+    <td><a href="{{ path ('addsentier') }}">Ajouter une sentier</a></td>
 
 </table>
 

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>type</td>
+        <td>volumemax</td>
+        <td></td>
+        <td></td>
+
+    </tr>
+
+    <tr {% for t in transport %}>
+        <td>{{ t.type }}</td>
+        <td>{{ t.volumemax }}</td>
+        <td><a href="{{ path ('updatetransport',{'id':t.id}) }}">Modifier</a></td>
+        <td><a href="{{ path ('deletetransport',{'id':t.id}) }}">Supprimer</a></td>
+    </tr {% endfor %}>
+
+    <td><a href="{{ path ('addtransport') }}">Ajouter un transport</a></td>
+
+</table>
+
+<form method="post" action="{{ path('searchtransport') }}">
+    <label>Recherche</label>
+    <input type="text" name="search"><input type="submit" value="Recherche">
+</form>
+
+</body>
+</html>

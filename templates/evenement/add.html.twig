@@ -1,2 +1,20 @@
 <h1>Add event</h1>
-{{ form(form) }}
+
+{{ form_start(form, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+{{ form_errors(form.depart) }}
+{{ form_label(form.depart, "Depart: ") }}
+{{ form_widget(form.depart, {'attr' : {'placeholder': 'Depart' }})}}
+
+{{ form_row(form.destination,{'label' : 'Destination :'} , {'attr' : {'placeholder': 'Destination' }} ) }}
+{{ form_row(form.nbparticipant,{'label' : 'Nombre des participants :'} , {'attr' : {'placeholder': 'participants' }} ) }}
+{{ form_row(form.dateevenement,{'label' : 'Date :'}) }}
+{{ form_row(form.duree,{'label' : 'Durée :'}, {'attr' : {'placeholder': 'Durée' }} ) }}
+{{ form_row(form.prix,{'label' : 'Prix :'}, {'attr' : {'placeholder': 'Prix' }} ) }}
+{{ form_row(form.programme,{'label' : 'Programme :'}, {'attr' : {'placeholder': 'Programme' }} ) }}
+{{ form_row(form.contact,{'label' : 'Contact :'}, {'attr' : {'placeholder': 'Contact' }} ) }}
+{{ form_row(form.infos,{'label' : 'Informations :'}, {'attr' : {'placeholder': 'Informations' }} ) }}
+{{ form_row(form.type,{'label' : 'Type :'}, {'attr' : {'placeholder': 'Rando/Camp' }} ) }}
+{{ form_row(form.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
+
+{{ form_end(form) }}

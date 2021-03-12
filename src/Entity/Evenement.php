@@ -6,6 +6,8 @@ use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -21,56 +23,67 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $depart;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $destination;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $nbparticipant;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $dateevenement;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $duree;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $programme;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $contact;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $infos;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="ce champ est obligatoire")
      */
     private $circuit;
 
