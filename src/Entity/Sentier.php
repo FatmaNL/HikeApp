@@ -20,6 +20,11 @@ class Sentier
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $nomsentier;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $duree;
 
     /**
@@ -47,10 +52,6 @@ class Sentier
      */
     private $randonnee;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $no;
 
     public function getId(): ?int
     {
@@ -137,6 +138,18 @@ class Sentier
     public function setNo(?string $no): self
     {
         $this->no = $no;
+
+        return $this;
+    }
+
+    public function getNomsentier(): ?string
+    {
+        return $this->nomsentier;
+    }
+
+    public function setNomsentier(string $nomsentier): self
+    {
+        $this->nomsentier = $nomsentier;
 
         return $this;
     }

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>nomsentier</td>
+        <td>duree</td>
+        <td>distance</td>
+        <td>difficulte</td>
+        <td>departsentier</td>
+        <td>destinationsentier</td>
+        <td>randonnee</td>
+        <td></td>
+        <td></td>
+
+    </tr>
+
+    <tr {% for s in sentier %}>
+        <td>{{ s.nomsentier }}</td>
+        <td>{{ s.duree }}</td>
+        <td>{{ s.distance }}</td>
+        <td>{{ s.difficulte }}</td>
+        <td>{{ s.departsentier }}</td>
+        <td>{{ s.destinationsentier }}</td>
+        <td>{{ s.randonne }}</td>
+        <td><a href="{{ path ('updatesentier',{'id':s.id}) }}">Modifier</a></td>
+        <td><a href="{{ path ('deletesentier',{'id':s.id}) }}">Supprimer</a></td>
+    </tr {% endfor %}>
+
+    <td><a href="{{ path ('addsentier') }}">Ajouter un evenement</a></td>
+
+</table>
+
+<form method="post" action="{{ path('searchsentier') }}">
+    <label>Recherche</label>
+    <input type="text" name="search"><input type="submit" value="Recherche">
+</form>
+
+</body>
+</html>
