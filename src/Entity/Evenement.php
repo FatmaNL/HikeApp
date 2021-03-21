@@ -120,10 +120,16 @@ class Evenement
      */
     private $nomevenement;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="evenement")
+     */
+    private $participations;
+
     public function __construct()
     {
         $this->sentiers = new ArrayCollection();
         $this->transports = new ArrayCollection();
+        $this->participations = new ArrayCollection();
     }
 
 
@@ -333,6 +339,36 @@ class Evenement
     public function setNomevenement(string $nomevenement): self
     {
         $this->nomevenement = $nomevenement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getEvenement() === $this) {
+                $participation->setEvenement(null);
+            }
+        }
 
         return $this;
     }
