@@ -1,12 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block produit %}
-    <li class="sub-menu">
-        <a class="active" href="afficheProduit">
-            <i class="fa fa-th"></i>
-            <span>Gestion des produits</span>
-        </a>
-    </li>
-{% endblock %}
 {% block body %}
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
@@ -14,12 +6,12 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <h3><i class="fa fa-angle-right"></i> Modifier un produit</h3>
+            <h3><i class="fa fa-angle-right"></i> Modifier une categorie</h3>
             <!-- BASIC FORM VALIDATION -->
             <div class="row mt">
                 <div class="col-lg-12">
                     <div class="form-panel">
-                        <form role="form" class="style-form" method="post" action="{{ path('update',{'id':id}) }}">
+                        <form role="form" class="style-form" method="post" action="{{ path('updcat',{'id':id}) }}">
 
                             <div class="form-group has-success">
                                 {{ form_start(f) }}

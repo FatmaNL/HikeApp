@@ -27,11 +27,6 @@ class Commande
      */
     private $etat;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
-     * @ORM\JoinColumn(name="user_cin", referencedColumnName="cin")
-     */
-    private $user;
 
     public function getId(): ?string
     {
@@ -62,20 +57,5 @@ class Commande
 
         return $this;
     }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-
-
 
 }
