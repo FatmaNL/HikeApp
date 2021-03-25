@@ -1,20 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form action="{{ path('recherche') }}" method="post">
-    <label >recherche</label>
-    <input type="text" name="search"><input type="button" value="recherche">
+<form action="{{ path('rechercher') }}" method="post">
+    <label >rechercher</label>
+    <input type="text" name="searchcmd"><input type="submit" value="rechercher">
 </form>
+<td><a href="{{ path('AddCommande') }}">ajouter</a></td>
 <table border="1">
     <tr>
-        <td>Id</td>
+
         <td>Reference</td>
         <td>date</td>
         <td>etat</td>
@@ -23,11 +14,10 @@
         <td>{{ c.refcommande }}</td>
         <td>{{ c.datecommande|date('Y-m-d H:i:s') }}</td>
         <td>{{ c.etat }}</td>
-        <td><a href="{{ path('update',{'id':c.refCommande}) }}">modifier</a></td>
-        <td><a href="{{ path('d',{'id':c.refCommande}) }}">supprimer</a></td>
+            <td><a href="{{ path('updated',{'refcommande':c.refcommande}) }}">modifier</a></td>
+        <td><a href="{{ path('del',{'refcommande':c.refcommande}) }}">supprimer</a></td>
     </tr{% endfor %}>
 </table>
-<td><a href="{{ path('AddCommande') }}">ajouter</a></td>
 
-</body>
-</html>
+
+

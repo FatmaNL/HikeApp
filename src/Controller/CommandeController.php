@@ -6,11 +6,10 @@ use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class CommandeController extends AbstractController
 {
     /**
@@ -36,12 +35,12 @@ class CommandeController extends AbstractController
     }
 
     /**
-     * @Route ("suppCo/{id}",name="d")
+     * @Route ("suppCo/{refcommande}",name="del")
      */
 
-    public function delete($id, CommandeRepository $repo)
+    public function delete($refcommande, CommandeRepository $repo)
     {
-        $commande = $repo->find($id);
+        $commande = $repo->find($refcommande);
         $em = $this->getDoctrine()->getManager();
         $em->remove($commande);
         $em->flush();
@@ -52,14 +51,14 @@ class CommandeController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @Route ("Commande/AddCommande",name="AddCommande")
+     * @Route ("/AddCommande",name="AddCommande")
      */
 
     public function add(Request $request)
     {
         $Commande = new Commande();
         $form = $this->createForm(CommandeType::class, $Commande);
-        $form->add('Ajouter', SubmitType::class);
+        $form->add('Ajouter',SubmitType::class, array( 'attr' => array('class' => 'btn btn-success')));
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -73,13 +72,13 @@ class CommandeController extends AbstractController
         ]);
     }
     /**
-     * @Route("commande/update/{id}",name="update")
+     * @Route("commande/update/{refcommande}",name="updated")
      */
-    public function update(CommandeRepository $repo,$id,Request $request)
+    public function update(CommandeRepository $repo,$refcommande,Request $request)
     {
-        $commande = $repo->find($id);
+        $commande = $repo->find($refcommande);
         $form = $this->createForm(CommandeType::class, $commande);
-        $form->add('update', SubmitType::class);
+        $form->add('updated', SubmitType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -91,11 +90,11 @@ class CommandeController extends AbstractController
         ]);
     }
     /**
-     * @Route("commande/recherche",name="recherche")
+     * @Route("commande/recherche",name="rechercher")
      */
     public function recherche(CommandeRepository $repo,Request $request){
-        $data=$request->get('search');
-        $commande=$repo->findBy(['RefCommande'=>$data]);
+        $data=$request->get('searchcmd');
+        $commande=$repo->findBy(['refcommande'=>$data]);
         return $this->render('commande/index.html.twig',
             ['commande'=>$commande]);
     }

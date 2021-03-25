@@ -15,7 +15,6 @@ class CommandeType extends AbstractType
             ->add('refcommande')
             ->add('datecommande')
             ->add('etat')
-            ->add('user')
         ;
     }
 

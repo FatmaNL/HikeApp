@@ -32,6 +32,12 @@ class Produit
      */
     private $prix;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lignecommande::class, inversedBy="Listeproduits")
+     * @ORM\JoinColumn(name="idlignecommande", referencedColumnName="idlignecommande")
+     */
+    private $Panier;
+
     public function getId(): ?int
     {
         return $this->numproduit;
@@ -69,6 +75,18 @@ class Produit
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getPanier(): ?Lignecommande
+    {
+        return $this->Panier;
+    }
+
+    public function setPanier(?Lignecommande $Panier): self
+    {
+        $this->Panier = $Panier;
 
         return $this;
     }
