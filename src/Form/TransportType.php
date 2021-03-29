@@ -14,6 +14,7 @@ class TransportType extends AbstractType
         $builder
             ->add('type')
             ->add('volumemax')
+            ->add('nombreTransports')
         ;
     }
 

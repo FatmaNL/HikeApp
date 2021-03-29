@@ -130,18 +130,6 @@ class Sentier
         return $this;
     }
 
-    public function getNo(): ?string
-    {
-        return $this->no;
-    }
-
-    public function setNo(?string $no): self
-    {
-        $this->no = $no;
-
-        return $this;
-    }
-
     public function getNomsentier(): ?string
     {
         return $this->nomsentier;

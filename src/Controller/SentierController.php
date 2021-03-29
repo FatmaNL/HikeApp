@@ -29,7 +29,7 @@ class SentierController extends AbstractController
     /**
      * @param SentierRepository $sentier
      * @return Response
-     * Route("/sentier",name="afficher")
+     * @Route("/sentier",name="afficher", methods={"GET"})
      */
 
     public function affiche(SentierRepository $sent)

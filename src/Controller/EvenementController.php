@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
+use App\Repository\SentierRepository;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,12 +40,14 @@ class EvenementController extends AbstractController
     }
 
     /**
+     * @param SentierRepository $sentier
      * @param Request $req
      * @return Response
      * @Route ("evenement/addevent",name="addevent")
      */
-    public function add(Request $req): Response
+    public function add(Request $req, SentierRepository $sent): Response
     {
+        $sentier = $sent->findAll();
         $evenement = new Evenement();
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->add('Ajouter', SubmitType::class);
@@ -55,7 +59,10 @@ class EvenementController extends AbstractController
             return $this->redirectToRoute('evenement');
         }
         return $this->render('evenement/add.html.twig', 
-        [ 'form' => $form->createView() ]);
+        [ 
+            'sentier' => $sentier,
+            'form' => $form->createView()
+        ]);
     }
 
     /**

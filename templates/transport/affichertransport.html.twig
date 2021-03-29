@@ -93,6 +93,7 @@
                       <tr>
                         <td>Type</td>
                         <td>Volume Max</td>
+                        <td>Nombre</td>
                         <td></td>
                         <td></td>
                       </tr>
@@ -102,6 +103,7 @@
                         <tr {% for t in transport %}>
                             <td>{{ t.type }}</td>
                             <td>{{ t.volumemax }}</td>
+                            <td>{{ t.nombreTransports }}</td>
                             <td><a href="{{ path ('updatetransport',{'id':t.id}) }}">Modifier</a></td>
                             <td><a href="{{ path ('deletetransport',{'id':t.id}) }}">Supprimer</a></td>
                         </tr {% endfor %}>

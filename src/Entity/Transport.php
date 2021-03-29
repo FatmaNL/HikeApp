@@ -30,7 +30,12 @@ class Transport
     /**
      * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="transports")
      */
-    private $camping;
+    private $event;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nombreTransports;
 
     public function getId(): ?int
     {
@@ -61,14 +66,26 @@ class Transport
         return $this;
     }
 
-    public function getCamping(): ?Evenement
+    public function getEvent(): ?Evenement
     {
-        return $this->camping;
+        return $this->event;
     }
 
-    public function setCamping(?Evenement $camping): self
+    public function setEvent(?Evenement $event): self
     {
-        $this->camping = $camping;
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getNombreTransports(): ?int
+    {
+        return $this->nombreTransports;
+    }
+
+    public function setNombreTransports(int $nombreTransports): self
+    {
+        $this->nombreTransports = $nombreTransports;
 
         return $this;
     }

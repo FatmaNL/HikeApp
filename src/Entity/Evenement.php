@@ -116,7 +116,6 @@ class Evenement
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="ce champ est obligatoire")
      * @Assert\Type("string")
-     * @Assert\Unique(message="ce nom est déja utilisé")
      */
     private $nomevenement;
 
