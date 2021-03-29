@@ -1,0 +1,60 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello ProduitControllerFrontController!
+{% endblock %}
+
+{% block body %}
+	<section>
+		<div class="section-inner">
+			<div class="container">
+				<div class="col-md-12">
+					<ul class="portfolio-items nopadding-lr isotope list-unstyled">
+						{% for p in produit %}
+							<li class="col-sm-4 col-xs-12 portfolio-item nopadding-lr apps isotope-item">
+								<div class="hover-item">
+									<a href=""><img src="{{ asset('uploads/images/' ~ p.image) }}" class="img-responsive smoothie" alt=""></a>
+									<div class="overlay-item-caption smoothie"></div>
+									<div class="hover-item-caption smoothie">
+										<div class="vertical-center smoothie">
+											<h3 class="smoothie mb30">
+												<a href="single-portfolio-fullscreen.html" title="view project">{{p.nomproduit}}</a>
+											</h3>
+											<a href="{{ asset('uploads/images/' ~ p.image) }}" title="View Gallery" class="btn btn-primary lb-link smoothie">Afficher</a>
+											<a href="{{ asset('uploads/images/' ~ p.image) }}" class="smoothie btn btn-primary">Commander</a>
+                                            <a href="{{ asset('uploads/images/' ~ p.image) }}" class="smoothie btn btn-primary">favoris</a>
+										</div>
+									</div>
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{#<section class="white-bg ">
+										            <div class="section-inner masonry-portfolio container demo-selector " data-masonry-cols="4">
+										                <div>
+										                    <div>
+										                        <ul class="masonry-portfolio-items isotope list-unstyled">
+										                            <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
+										                                <div class="hover-item">
+										                                    <a href="{{ asset('uploads/images/' ~ p.image) }}"><img src="{{ asset('uploads/images/' ~ p.image) }}" class="img-responsive smoothie" alt=""> </a>
+										                                    <div class="overlay-item-caption smoothie"></div>
+										                                    <div class="hover-item-caption smoothie">
+										                                        <div class="vertical-center smoothie">
+										                                        </div>
+										                                    </div>
+										                                </div>
+										                            </li>
+										                           
+										                        </ul>
+										                    </div>
+										                </div>
+										            </div>
+										        </section>#}
+
+
+{% endblock %}
