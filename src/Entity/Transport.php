@@ -28,11 +28,6 @@ class Transport
     private $volumemax;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="transports")
-     */
-    private $event;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $nombreTransports;
@@ -62,18 +57,6 @@ class Transport
     public function setVolumemax(int $volumemax): self
     {
         $this->volumemax = $volumemax;
-
-        return $this;
-    }
-
-    public function getEvent(): ?Evenement
-    {
-        return $this->event;
-    }
-
-    public function setEvent(?Evenement $event): self
-    {
-        $this->event = $event;
 
         return $this;
     }

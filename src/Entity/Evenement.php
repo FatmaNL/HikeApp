@@ -108,11 +108,6 @@ class Evenement
     private $sentiers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Transport::class, mappedBy="camping")
-     */
-    private $transports;
-
-    /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="ce champ est obligatoire")
      * @Assert\Type("string")
@@ -124,10 +119,15 @@ class Evenement
      */
     private $participations;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Transport::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
+     */
+    private $transport;
+
     public function __construct()
     {
         $this->sentiers = new ArrayCollection();
-        $this->transports = new ArrayCollection();
         $this->participations = new ArrayCollection();
     }
 
@@ -141,6 +141,18 @@ class Evenement
     public function getDepart(): ?string
     {
         return $this->depart;
+    }
+
+    public function getNomevenement(): ?string
+    {
+        return $this->nomevenement;
+    }
+
+    public function setNomevenement(string $nomevenement): self
+    {
+        $this->nomevenement = $nomevenement;
+
+        return $this;
     }
 
     public function setDepart(string $depart): self
@@ -301,48 +313,6 @@ class Evenement
     }
 
     /**
-     * @return Collection|Transport[]
-     */
-    public function getTransports(): Collection
-    {
-        return $this->transports;
-    }
-
-    public function addTransport(Transport $transport): self
-    {
-        if (!$this->transports->contains($transport)) {
-            $this->transports[] = $transport;
-            $transport->setCamping($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTransport(Transport $transport): self
-    {
-        if ($this->transports->removeElement($transport)) {
-            // set the owning side to null (unless already changed)
-            if ($transport->getCamping() === $this) {
-                $transport->setCamping(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getNomevenement(): ?string
-    {
-        return $this->nomevenement;
-    }
-
-    public function setNomevenement(string $nomevenement): self
-    {
-        $this->nomevenement = $nomevenement;
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Participation[]
      */
     public function getParticipations(): Collection
@@ -368,6 +338,18 @@ class Evenement
                 $participation->setEvenement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTransport(): ?Transport
+    {
+        return $this->transport;
+    }
+
+    public function setTransport(Transport $transport): self
+    {
+        $this->transport = $transport;
 
         return $this;
     }
