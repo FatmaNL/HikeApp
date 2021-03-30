@@ -125,6 +125,11 @@ class Evenement
      */
     private $transport;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Sentier::class, inversedBy="evenements")
+     */
+    private $sentier;
+
     public function __construct()
     {
         $this->sentiers = new ArrayCollection();
@@ -350,6 +355,18 @@ class Evenement
     public function setTransport(Transport $transport): self
     {
         $this->transport = $transport;
+
+        return $this;
+    }
+
+    public function getSentier(): ?Sentier
+    {
+        return $this->sentier;
+    }
+
+    public function setSentier(?Sentier $sentier): self
+    {
+        $this->sentier = $sentier;
 
         return $this;
     }
