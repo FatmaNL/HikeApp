@@ -39,13 +39,7 @@ class Commande
     private $etat;
 
 
-
-
-    public function __construct()
-    {
-        $this->lignecommandes = new ArrayCollection();
-    }
-
+    
     public function getrefcommande(): ?string
     {
         return $this->refcommande;

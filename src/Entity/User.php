@@ -65,12 +65,6 @@ class User
 
 
 
-
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -192,6 +186,12 @@ class User
         return $this;
     }
 
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
 
-
-}
+   }
