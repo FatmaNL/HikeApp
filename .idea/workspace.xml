@@ -31,15 +31,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="">
-=======
     <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="heni">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
->>>>>>> master
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/produit/addProduit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/addProduit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/produit/addProduite.html.twig" beforeDir="false" />
