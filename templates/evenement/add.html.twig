@@ -1,6 +1,7 @@
 {% extends "backoffice-base.html.twig" %}
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% form_theme formtransport 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}Nouvel Évenement{% endblock title %}
 
@@ -99,6 +100,18 @@
 				{{ form_row(form.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
 
 				{{ form_end(form) }}
+
+                {{ form_start(formtransport, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+                {{ form_row(formtransport.type,{'label' : 'Type :'} , {'attr' : {'placeholder': 'Type' }} ) }}
+
+				{# {{ form_errors(formupdate.depart) }} #}
+				{{ form_label(formtransport.volumemax, "Volume Max: ") }}
+				{{ form_widget(formtransport.volumemax, {'attr' : {'placeholder': 'Volume max' }})}}
+
+                {{ form_row(formtransport.nombreTransports,{'label' : 'Nombre :'} , {'attr' : {'placeholder': 'Nombre' }} ) }}
+
+				{{ form_end(formtransport) }}
                 
                     {#sentiers#}
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Entity\Transport;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
 use App\Repository\SentierRepository;
@@ -49,19 +50,29 @@ class EvenementController extends AbstractController
     {
         $sentier = $sent->findAll();
         $evenement = new Evenement();
-        $form = $this->createForm(EvenementType::class, $evenement);
-        $form->add('Ajouter', SubmitType::class);
-        $form->handleRequest($req);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $transport = new Transport();
+        $eventform = $this->createForm(EvenementType::class, $evenement);
+        $transportform = $this->createForm(TransportType::class, $transport);
+        $eventform->add('Ajouter', SubmitType::class);
+        $eventform->handleRequest($req);
+        if ($eventform->isSubmitted() && $eventform->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
             return $this->redirectToRoute('evenement');
         }
+        /*$transportform->handleRequest($req);
+        if ($transportform->isSubmitted() && $transportform->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($transport);
+            $em->flush();
+            return $this->redirectToRoute('evenement');
+        }*/
         return $this->render('evenement/add.html.twig', 
         [ 
             'sentier' => $sentier,
-            'form' => $form->createView()
+            'form' => $eventform->createView(),
+            'form' => $transportform->createView()
         ]);
     }
 

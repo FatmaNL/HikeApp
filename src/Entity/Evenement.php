@@ -103,7 +103,7 @@ class Evenement
     private $circuit;
 
     /**
-     * @ORM\OneToMany(targetEntity=Sentier::class, mappedBy="randonnee")
+     * @ManyToMany(targetEntity="Sentier::class", mappedBy="evenements")
      */
     private $sentiers;
 

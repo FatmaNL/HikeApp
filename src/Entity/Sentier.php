@@ -55,7 +55,8 @@ class Sentier
     private $randonnee;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evenement::class, mappedBy="sentier")
+     * @ORM\ManyToMany(targetEntity=Evenement::class, inversedBy="sentiers")
+     * @JoinTable(name="evenements_sentiers")
      */
     private $evenements;
 
