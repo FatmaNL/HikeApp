@@ -31,9 +31,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="">
+=======
     <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="heni">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+>>>>>>> master
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProduitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProduitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/addProduit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit/addProduit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/addProduite.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/produit/afficheProduit.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +171,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/pidev" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -180,6 +190,10 @@
       <workItem from="1614802515734" duration="9455000" />
       <workItem from="1614853292749" duration="2873000" />
       <workItem from="1614926724378" duration="21747000" />
+<<<<<<< HEAD
+      <workItem from="1615304716293" duration="4405000" />
+      <workItem from="1615369119483" duration="4951000" />
+=======
       <workItem from="1615237281870" duration="4613000" />
       <workItem from="1615282710440" duration="8486000" />
     </task>
@@ -189,6 +203,7 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1615306150662</updated>
+>>>>>>> master
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -207,5 +222,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1615371551761">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1615371551761" />
+    <state x="339" y="164" key="run.anything.popup" timestamp="1615370312585">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1615370312585" />
   </component>
 </project>

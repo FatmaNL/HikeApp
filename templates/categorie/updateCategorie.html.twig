@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <h3><i class="fa fa-angle-right"></i> Modifier une categorie</h3>
+            <!-- BASIC FORM VALIDATION -->
+            <div class="row mt">
+                <div class="col-lg-12">
+                    <div class="form-panel">
+                        <form role="form" class="style-form" method="post" action="{{ path('updcat',{'id':id}) }}">
+
+                            <div class="form-group has-success">
+                                {{ form_start(f) }}
+                                {{ form_widget(f)}}
+                                {{ form_end(f) }}
+
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /form-panel -->
+                </div>
+                <!-- /col-lg-12 -->
+            </div>
+            <!-- /row -->
+        </section>
+        <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+{% endblock %}
+

@@ -63,15 +63,7 @@ class User
      */
     private $role;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="User",orphanRemoval=true)
-     */
-    private $commandes;
 
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
 
     public function getNom(): ?string
     {
@@ -202,27 +194,4 @@ class User
         return $this->commandes;
     }
 
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getUser() === $this) {
-                $commande->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-
-}
+   }

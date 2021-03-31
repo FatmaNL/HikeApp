@@ -520,10 +520,12 @@
                 "symfony/doctrine-bridge": "^4.3.7|^5.0",
                 "symfony/framework-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/service-contracts": "^1.1.1|^2.0"
+
             },
             "conflict": {
                 "doctrine/orm": "<2.6",
                 "twig/twig": "<1.34|>=2.0,<2.4"
+
             },
             "require-dev": {
                 "doctrine/coding-standard": "^8.0",
