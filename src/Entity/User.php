@@ -17,6 +17,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * fields= {"email"},
  * message= "L'email est deja utilisé"
  * )
+ * @UniqueEntity(
+ * fields= {"cin"},
+ * message= "Votre cin est deja utilisé"
+ * )
  */
 class User implements UserInterface
 {
@@ -24,6 +28,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @Assert\Length(min="8", minMessage="Votre cin est incorrect")
+     * @Assert\Length(max="8", maxMessage="Votre cin est incorrect")
      */
     private $cin;
 
@@ -83,16 +88,13 @@ class User implements UserInterface
      */
     private $tel;
 
+
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="User",orphanRemoval=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $commandes;
+    private $status ='DESACTIVE';
 
-    public function __construct()
-    {
-        $this->commandes = new ArrayCollection();
-    }
-
+    
     public function getCin(): ?int
     {
         return $this->cin;
@@ -252,32 +254,15 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
+    public function getStatus(): ?string
+    {   
+        return $this->status;
     }
 
-    public function addCommande(Commande $commande): self
+    public function setStatus(?string $status): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getUser() === $this) {
-                $commande->setUser(null);
-            }
-        }
+        
+        $this->status = $status;
 
         return $this;
     }

@@ -6,29 +6,20 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class RegistrationType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('cin')
             ->add('email')
-            ->add('password', PasswordType::class)
             ->add('nom')
             ->add('prenom')
-            ->add('cin')
             ->add('age')
-            ->add('sexe', ChoiceType::class, [
-                'choices'  => [
-                    '' => " ",
-                    'Homme' => 'Homme',
-                    'Femme' => 'Femme',
-                ],
-            ])
+            ->add('sexe')
             ->add('adresse')
-            ->add('tel')  
+            ->add('tel')
         ;
     }
 

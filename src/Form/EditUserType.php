@@ -9,13 +9,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class RegistrationType extends AbstractType
+class EditUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
-            ->add('password', PasswordType::class)
+
             ->add('nom')
             ->add('prenom')
             ->add('cin')
@@ -25,11 +25,27 @@ class RegistrationType extends AbstractType
                     '' => " ",
                     'Homme' => 'Homme',
                     'Femme' => 'Femme',
-                ],
-            ])
+            ],
+        ])
             ->add('adresse')
-            ->add('tel')  
+            ->add('tel')
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'User' => 'ROLE_USER',
+                    'Organisateur' => 'ROLE_ORGANISATEUR',
+                    'Admin' => 'ROLE_ADMIN'
+                ],
+                'expanded' => false,
+                'multiple' => true,
+            ])
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    'ACTIVE' => 'ACTIVE',
+                    'DESACTIVE' => 'DESACTIVE'
+                ]
+            ])         
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)
