@@ -21,21 +21,26 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:dev" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+    </expand>
+    <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:test" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:event" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-    </expand>
-    <select />
+    </select>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="heni..">
+=======
 <<<<<<< HEAD
     <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="">
 =======
     <list default="true" id="10dc7bb9-304d-4290-a3f8-7c8d12fac3fb" name="Default Changelist" comment="heni">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+>>>>>>> master
 >>>>>>> master
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
@@ -171,10 +176,22 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../code/cours-symfony-session-panier" />
+=======
     <property name="last_opened_file_path" value="$USER_HOME$/pidev" />
+>>>>>>> master
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\Desktop\pidevMaster\HikeApp\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\Desktop\pidevMaster\HikeApp\templates\nav" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -191,21 +208,46 @@
       <workItem from="1614853292749" duration="2873000" />
       <workItem from="1614926724378" duration="21747000" />
 <<<<<<< HEAD
+      <workItem from="1615415778169" duration="2094000" />
+      <workItem from="1615475805820" duration="40011000" />
+      <workItem from="1616005532699" duration="8716000" />
+      <workItem from="1616443674641" duration="1949000" />
+      <workItem from="1616632699210" duration="4287000" />
+      <workItem from="1616713063729" duration="4114000" />
+      <workItem from="1616924601966" duration="696000" />
+      <workItem from="1616926205915" duration="703000" />
+      <workItem from="1616951957001" duration="638000" />
+      <workItem from="1617015117679" duration="2731000" />
+      <workItem from="1617098983157" duration="6953000" />
+=======
+<<<<<<< HEAD
       <workItem from="1615304716293" duration="4405000" />
       <workItem from="1615369119483" duration="4951000" />
 =======
       <workItem from="1615237281870" duration="4613000" />
       <workItem from="1615282710440" duration="8486000" />
+>>>>>>> master
     </task>
     <task id="LOCAL-00001" summary="heni">
-      <created>1615306150662</created>
+      <created>1616644209459</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
+<<<<<<< HEAD
+      <updated>1616644209459</updated>
+=======
       <updated>1615306150662</updated>
 >>>>>>> master
+>>>>>>> master
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="heni..">
+      <created>1617103799152</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617103799152</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +265,46 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="heni" />
+    <MESSAGE value="heni.." />
+    <option name="LAST_COMMIT_MESSAGE" value="heni.." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="123" key="FileChooserDialogImpl" timestamp="1616720825234">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616720825234" />
+    <state x="129" y="56" key="MergeDialog" timestamp="1615309103711">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="129" y="56" key="MergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1615309103711" />
+    <state x="321" y="130" key="MultipleFileMergeDialog" timestamp="1616644131757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="321" y="130" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1616644131757" />
+    <state x="184" y="13" key="SettingsEditor" timestamp="1615502133025">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1615502133025" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1616011487897">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.738@0.0.1366.738" timestamp="1616011487897" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1617103804480">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1617103804480" />
+    <state x="339" y="165" key="run.anything.popup" timestamp="1616010959449">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1616010959449" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1615541127869">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1615541127869" />
+=======
   <component name="WindowStateProjectService">
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1615371551761">
       <screen x="0" y="0" width="1366" height="728" />
@@ -232,5 +314,6 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1615370312585" />
+>>>>>>> master
   </component>
 </project>
