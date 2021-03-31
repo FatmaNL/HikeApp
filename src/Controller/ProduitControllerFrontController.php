@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
+use Symfony\Component\Security\Core\Security;
 
+use App\Entity\Produit;
+use App\Entity\User;
 use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,4 +33,17 @@ class ProduitControllerFrontController extends AbstractController
             'produit' => $produit
         ]);
     }
+
+    /**
+     * @Route("/produitClient/prod/{id}", name="produit")
+     */
+    public function affichep(ProduitRepository $repo,$id)
+    {
+        $produit=$repo->find($id);
+       // dd($produit);
+        return $this->render('produit_controller_front/produit.html.twig', [
+            'produit' => $produit
+        ]);
+    }
+    
 }

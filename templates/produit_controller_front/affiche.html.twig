@@ -10,7 +10,7 @@
 				<div class="col-md-12">
 					<ul class="portfolio-items nopadding-lr isotope list-unstyled">
 						{% for p in produit %}
-							<li class="col-sm-4 col-xs-12 portfolio-item nopadding-lr apps isotope-item">
+							<li class="col-sm-3 col-xs-12 portfolio-item nopadding-lr apps isotope-item">
 								<div class="hover-item">
 									<a href=""><img src="{{ asset('uploads/images/' ~ p.image) }}" class="img-responsive smoothie" alt=""></a>
 									<div class="overlay-item-caption smoothie"></div>
@@ -19,7 +19,7 @@
 											<h3 class="smoothie mb30">
 												<a href="single-portfolio-fullscreen.html" title="view project">{{p.nomproduit}}</a>
 											</h3>
-											<a href="{{ asset('uploads/images/' ~ p.image) }}" title="View Gallery" class="btn btn-primary lb-link smoothie">Afficher</a>
+											<a href="{{ path('produit',{'id':p.id}) }}" title="View Gallery" class="btn btn-primary smoothie">Afficher</a>
 											<a href="{{ asset('uploads/images/' ~ p.image) }}" class="smoothie btn btn-primary">Commander</a>
                                             <a href="{{ asset('uploads/images/' ~ p.image) }}" class="smoothie btn btn-primary">favoris</a>
 										</div>

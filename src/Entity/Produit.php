@@ -20,7 +20,7 @@ class Produit
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $numproduit;
+    public $numproduit;
 
     /**
      *  @Assert\Length(
@@ -30,12 +30,12 @@ class Produit
      *      maxMessage = "le numero de produit doit etre au maximum {{ limit }} caracteres")
      * @ORM\Column(type="string", length=255)
      */
-    private $nomproduit;
+    public $nomproduit;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $quantite;
+    public $quantite;
 
     /**
      * @ORM\Column(type="float")
@@ -43,12 +43,12 @@ class Produit
      *     message="la prix {{ value }} est invalide"
      * )
      */
-    private $prix;
+    public $prix;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    public $image;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="produits")
