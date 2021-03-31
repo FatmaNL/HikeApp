@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les produits
+{% endblock %}
+
+{% block body %}
+    <div class="bg-light p-3">
+        <h1>Les produits</h1>
+    </div>
+    <div class="row">
+        {% for p in  %}
+    </div>
+<a href="{{ path'cart-add',{'numproduit': produit}) }}"class="btn btn-success float-right">
+    <i class="fas fa-shopping-cart mr-1"></i>
+</a>
+{% endblock %}
