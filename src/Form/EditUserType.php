@@ -15,7 +15,6 @@ class EditUserType extends AbstractType
     {
         $builder
             ->add('email')
-
             ->add('nom')
             ->add('prenom')
             ->add('cin')

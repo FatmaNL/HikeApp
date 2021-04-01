@@ -256,6 +256,19 @@
               <span>Users</span>
               </a>
           </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Calendar</span>
+            </a>
+            <ul class="sub">
+                <li><a href="{{ path('profil_calendar') }}">Show</a></li>
+                {% if is_granted('ROLE_ORGANISATEUR') %}
+                  <li><a href="{{ path('calendar_new') }}">Add Event</a></li>
+                  <li><a href="{{ path('calendar_index') }}">Events Lists</a></li>
+                {% endif %}
+              </ul>
+          </li>
         <!-- sidebar menu end-->
       </div>
     </aside>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\UserEditType;
+use App\Repository\CalendarRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,10 +73,25 @@ class UserController extends AbstractController
     /**
      * @Route("/calendar", name="calendar")
      */
-    public function indexcalendar(): Response
-    {
-        return $this->render('calendar/index.html.twig', [
-            'controller_name' => 'CalendarController',
-        ]);
+    public function indexcalendar(CalendarRepository $calendar): Response
+    {   
+        $events = $calendar->findAll();
+        $rdvs = [];
+        foreach($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'title' => $event->getTitle(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'description' => $event->getDescription(),
+                'background_color' => $event->getBackgroundColor(),
+                'border_color' => $event->getBorderColor(),
+                'text_color' => $event->getTextColor(),
+            ];
+        }
+
+        $data = json_encode($rdvs);
+
+        return $this->render('calendar/calendar.html.twig', compact('data'));
     }
 }

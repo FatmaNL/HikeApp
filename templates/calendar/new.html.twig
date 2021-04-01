@@ -21,7 +21,13 @@
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style-responsive.css') }}">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+  <style>
+    #calendrier {
+        width: 80%;
+        margin: auto;
+    }
+  </style>
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -248,7 +254,12 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href=""><img src="{{asset('img/ui-sam.jpg')}}" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          {% if app.user %}
+          <h5 class="centered">{{ app.user.nom }} {{ app.user.prenom }}</h5>
+          {% else %}
+          <h5 class="centered">Anonyme</h5>
+          {% endif %}
+          {% if is_granted('ROLE_ADMIN')%}
           <li class="mt">
             <a href="{{ path('admin_showuser') }}">
               <i class="fa fa-dashboard"></i>
@@ -268,6 +279,31 @@
                 {% endif %}
               </ul>
           </li>
+          {% else %}
+          <li class="mt">    
+            <a href="{{ path('profil_update') }}">
+                <i class="fa fa-dashboard"></i>
+                <span>Edit Profil</span>
+                </a>
+              <a href="{{ path('profil_password') }}">
+                  <i class="fa fa-dashboard"></i>
+                  <span>Change Password</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Calendar</span>
+            </a>
+            <ul class="sub">
+              <li><a href="{{ path('profil_calendar') }}">Show</a></li>
+              {% if is_granted('ROLE_ORGANISATEUR') %}
+                <li><a href="{{ path('calendar_new') }}">Add Event</a></li>
+                <li><a href="{{ path('calendar_index') }}">Events Lists</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        {% endif %}
         <!-- sidebar menu end-->
       </div>
     </aside>
@@ -280,29 +316,15 @@
       <section class="wrapper site-min-height">
         <div class="row">
           <div class="container">
-              
-            <h1>Update User Password</h1>
-            {% for message in app.flashes('error') %}
-                  <div class="col-xs4">
-                    <div class="alert alert-danger" role="alert">{{ message }}</div>
-                  </div>
-              {% endfor %}
-            <form  method="post">
-                <div class="form-field">
-                    <label for="pass">Password:</label>
-                    <input type="password" id="pass" name="pass" class="form-control rounded-1"  />
-                  </div>
-                  <div class="form-field">
-                    <label for="pass2">Confirm Password:</label>
-                    <input type="password" id="pass2" name="pass2" class="form-control rounded-1"  />
-                  </div>
-                  
-                  <div>
-                    <button type="submit" class="btn btn-success">Update</button>
-                    <a class="btn btn-primary" href="{{ path('admin_showuser') }}">Cancel</a>
-                  </div>   
-            </form>
-                 
+            <h1>New Event</h1>
+            {{form_start(form)}}
+            {{ form_widget(form) }}
+            <div>
+              <button type="submit" class="btn btn-success">Add</button>
+              <a class="btn btn-primary" href="{{ path('profil_calendar') }}">Cancel</a>
+            </div>
+            
+            {{form_end(form)}} 
             <!-- modal -->
          </div>
         </div>
@@ -335,38 +357,17 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
-  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js" integrity="sha256-ekrJn2FeZaiUFq99QswpQCUTME/HxaDfX7R8INzKJGE=" crossorigin="anonymous"></script>
+  <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js') }}"></script>
+  <script src="{{ asset('lib/jquery.scrollTo.min.js') }}"></script>
+  <script src="{{ asset('lib/jquery.nicescroll.js') }}" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
+  <script src="{{ asset('lib/common-scripts.js') }}"></script>
   <!--script for this page-->
   <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
-  <script>
-    $('.contact-map').click(function() {
-
-      //google map in tab click initialize
-      function initialize() {
-        var myLatlng = new google.maps.LatLng(40.6700, -73.9400);
-        var mapOptions = {
-          zoom: 11,
-          scrollwheel: false,
-          center: myLatlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Dashio Admin Theme!'
-        });
-      }
-      google.maps.event.addDomListener(window, 'click', initialize);
-    });
-  </script>
 </body>
 
 </html>

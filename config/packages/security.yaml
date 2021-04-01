@@ -43,6 +43,7 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/profil, roles: ROLE_USER }
+         - { path: ^/organisateur, roles: ROLE_ORGANISATEUR }
 
     role_hierarchy:
         ROLE_ORGANISATEUR: ROLE_USER
