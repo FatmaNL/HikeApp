@@ -67,7 +67,7 @@
 					<div class="collapse navbar-collapse" id="main-navigation">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black">Home
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Home
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu">
@@ -153,7 +153,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" style="color:black">Headers
+								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" >Headers
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu" role="menu">
@@ -178,7 +178,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" style="color:black">Footers
+								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" >Footers
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu" role="menu">
@@ -203,7 +203,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >
 									Produits
 									<span class="pe-7s-angle-down"></span>
 								</a>
@@ -220,7 +220,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black">Portfolio
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Portfolio
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu">
@@ -306,7 +306,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black">Blog
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Blog
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu">
@@ -355,7 +355,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" style="color:black">Shop
+								<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" >Shop
 									<span class="pe-7s-angle-down"></span>
 								</a>
 								<ul class="dropdown-menu" role="menu">
@@ -373,6 +373,9 @@
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
+{% block section %}
+{% endblock %}
+			
 
 			<div id="search-wrapper">
 				<button type="button" class="close">×</button>
@@ -595,7 +598,8 @@
 				</div>
 			</div>
 		</div>
-
+{% block add_css %}
+{% endblock %}
 {% block js %}
 {% endblock %}
 		<script src="{{ asset('assets/js/jquery.js') }}"></script>
