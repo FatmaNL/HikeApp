@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if app.user %}
+    
     <div class="bg-light p-3">
         <h1>Votre panier</h1>
     </div>
@@ -28,9 +28,7 @@
                  <td>{{ item.produit.Prix * item.quantite  }}</td>
                  <td>
                     
- <a href="{{ path('cart_remove',{'id' : item.produit.numproduit}) }}" class="smoothie btn btn-danger"">Supprimer
-                         
-                     </a>
+        <a href="{{ path('cart_remove',{'id' : item.produit.numproduit}) }}" class="smoothie btn btn-danger">Supprimer </a>
                      
                      <a href="{{ path('AddCommande') }}" class="smoothie btn btn-success">Commander</a>
 
@@ -49,6 +47,5 @@
         {% else %}
             <p>Surprise, c'est vide !</p>
 
-    {% endif %}
     {% endif %}
 {% endblock %}

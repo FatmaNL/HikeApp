@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
-use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+
+
 class CommandeController extends AbstractController
 {
     /**
@@ -55,18 +58,13 @@ class CommandeController extends AbstractController
      * @Route ("/AddCommande",name="AddCommande")
      */
 
-    public function add(Request $request )
+    public function add(Request $request)
     {
-       
-       
         $Commande = new Commande();
         $form = $this->createForm(CommandeType::class, $Commande);
         $form->add('Ajouter',SubmitType::class, array( 'attr' => array('class' => 'btn btn-success')));
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) 
-        {
-           
-        
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($Commande);
             $em->flush();
@@ -75,7 +73,6 @@ class CommandeController extends AbstractController
         }
         return $this->render('Commande/add.html.twig',[
             'form'=>$form->createView()
-            
         ]);
     }
     /**
@@ -105,5 +102,24 @@ class CommandeController extends AbstractController
         return $this->render('commande/index.html.twig',
             ['commande'=>$commande]);
     }
+    /**
+     * @Route ("donne",name="donne")
+     */
 
+    public function indexaction(Request $request)
+    {
+        $snappy = $this->get("knp_snappy.pdf");
+        $filename = "myfirst";
+        $website = "http://ourcodeworld.com";
+        return new Response(
+            $snappy->getOutput($website),
+            200,
+            array(
+                'Content-Type' => 'application/pdf',
+                'content-Disposition' => 'inline; filename="'.$filename. '.pdf'
+            )
+        );
+        
+    }
+    
 }

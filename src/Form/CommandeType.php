@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Form;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 use App\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
@@ -21,9 +22,11 @@ class CommandeType extends AbstractType
             ->add('etat',TextType::class, array('label'=>'Description '))
            // ->add('produits',TextType::class)
            //->add('catName',TextType::class, array('label' => 'Category Name','attr' => array('class' => 'form-control', 'autocomplete'=>'off'),'data_class' => null))
-        
+           ->add('captcha', CaptchaType::class);
+
 
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)
