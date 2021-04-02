@@ -1,16 +1,53 @@
-{% extends 'base.html.twig' %}
+{% extends 'base3.html.twig' %}
 
-{% block title %}Les produits
+{% block title %}Hello CartController!
 {% endblock %}
 
 {% block body %}
     <div class="bg-light p-3">
-        <h1>Les produits</h1>
+        <h1>Votre panier</h1>
     </div>
-    <div class="row">
-        {% for p in  %}
-    </div>
-<a href="{{ path'cart-add',{'numproduit': produit}) }}"class="btn btn-success float-right">
-    <i class="fas fa-shopping-cart mr-1"></i>
-</a>
+    {% if items | length > 0 %}
+     <table class="table">
+         <thead>
+         <tr>
+             <th>Produit</th>
+             <th>Prix</th>
+             <th>Quantité</th>
+             <th>Total</th>
+             <th></th>
+         </tr>
+         </thead>
+         <tbody>
+         {% for item in items  %}
+             <tr>
+                 <td>{{ item.produit.nomproduit }}</td>
+                 <td>{{ item.produit.Prix }}</td>
+                 <td>{{ item.quantite }}</td>
+                 <td>{{ item.produit.Prix * item.quantite  }}</td>
+                 <td>
+                    
+ <a href="{{ path('cart_remove',{'id' : item.produit.numproduit}) }}" class="smoothie btn btn-danger"">Supprimer
+                         
+                     </a>
+                     
+                     <a href="{{ path('AddCommande') }}" class="smoothie btn btn-success">Commander</a>
+
+                 </td>
+             </tr>
+         {% endfor %}
+         </tbody>
+         <tfoot>
+         <tr>
+             <td colspan="3" class="text-right">Total : </tdcolspan>
+             <td>{{ total }}</td>
+             <td></td>
+         </tr>
+         </tfoot>
+     </table>
+        {% else %}
+            <p>Surprise, c'est vide !</p>
+
+    {% endif %}
+
 {% endblock %}

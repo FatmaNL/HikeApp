@@ -269,13 +269,13 @@
                     <table class="table table-bordered">
                         <tr>
 
-                            <td>Reference</td>
+                            <td>Lieu</td>
                             <td>date</td>
-                            <td>etat</td>
+                            <td>Description</td>
                         </tr>
                         <tr {% for c in commande %}>
                             <td>{{ c.refcommande }}</td>
-                            <td>{{ c.datecommande|date('Y-m-d H:i:s') }}</td>
+                            <td>{{ c.datecommande|date('Y-m-d') }}</td>
                             <td>{{ c.etat }}</td>
                             <td><a href="{{ path('updated',{'refcommande':c.refcommande}) }}">modifier</a></td>
                             <td><a href="{{ path('del',{'refcommande':c.refcommande}) }}">supprimer</a></td>

@@ -58,6 +58,10 @@
 								<span id="4" class="fa fa-star"></span>
 								<span id="5" class="fa fa-star"></span>
 							</div>
+							<a href="{{ path('cart_add', {'numproduit':produit.numproduit}) }}" class="btn btn-success float-right">
+                        <i class="fa fa-shopping-cart"></i>
+                        Ajouter
+                    </a>
 							{#{{ app.user.username }}#}
 						</li>
 					</ul>
