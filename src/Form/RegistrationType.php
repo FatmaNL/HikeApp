@@ -22,6 +22,7 @@ class RegistrationType extends AbstractType
             ->add('sexe')
             ->add('adresse')
             ->add('tel')
+            ->add('roles')
             
             
         ;

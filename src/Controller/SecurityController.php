@@ -26,11 +26,14 @@ class SecurityController extends AbstractController
         $user = new User();
 
         $form = $this->createForm(RegistrationType::class, $user);
+        
         $form->handleRequest($request);
+        
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user ->setPassword($hash);
+            
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('security_login');
