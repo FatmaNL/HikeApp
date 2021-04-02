@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if app.user %}
     <div class="bg-light p-3">
         <h1>Votre panier</h1>
     </div>
@@ -49,5 +50,5 @@
             <p>Surprise, c'est vide !</p>
 
     {% endif %}
-
+    {% endif %}
 {% endblock %}
