@@ -38,12 +38,6 @@ class Commande
      */
     private $etat;
 
-    
-
-    public function __construct()
-    {
-        $this->produits = new ArrayCollection();
-    }
 
    
 
@@ -86,8 +80,6 @@ class Commande
 
         return $this;
     }
-
-   
 
 
 

@@ -269,16 +269,34 @@
                             </li>
                         </ul>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Shop <span class="pe-7s-angle-down"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="index-shop.html">Home Shop</a></li>
-                            <li><a href="single-product.html">Single Product</a></li>
-                        </ul>
+                        <a href="{{ path('admin_interface') }}" class="dropdown-toggle">Admin Interface</a>
                     </li>
-                    <li><a href="#search"><i class="pe-7s-search"></i></a></li>
-                    <li><a href="javascript:void(0);" class="side-menu-trigger hidden-xs"><i class="fa fa-bars"></i></a></li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a href="{{ path('profil_user') }}" class="dropdown-toggle">User Profil</a>
+                    </li>
+                    {% endif %}
+
+
+                    {% if not app.user %}
+                    <li class="dropdown">
+                        <a href="{{ path('app_register') }}" class="dropdown-toggle">Register</a>
+                    </li>
+                    {% endif %}
+
+                    {% if not app.user %}
+                    <li class="dropdown">
+                        <a href="{{ path('app_login') }}" class="dropdown-toggle">Login</a>
+                    </li>
+                    {% else %}
+                    <li class="dropdown">
+                        <a href="{{ path('app_logout') }}" class="dropdown-toggle">Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
+                  
             </div>
             <!-- /.navbar-collapse -->
         </div>

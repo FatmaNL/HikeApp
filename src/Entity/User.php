@@ -2,21 +2,57 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ * fields= {"email"},
+ * message= "L'email est deja utilisé"
+ * )
+ * @UniqueEntity(
+ * fields= {"cin"},
+ * message= "Votre cin est deja utilisé"
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
+     * @Assert\Length(min="8", minMessage="Votre cin est incorrect")
+     * @Assert\Length(max="8", maxMessage="Votre cin est incorrect")
      */
     private $cin;
+
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     * @Assert\Email
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     * @Assert\Length(min="6", minMessage="Votre mot de passe doit avoir au minimum 6 caracteres")
+     */
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -30,6 +66,10 @@ class User
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Length(
+     *      min = 2,minMessage = "Votre age est incorrect",
+     *      max = 2,maxMessage = "Votre age est incorrect",
+     * )
      */
     private $age;
 
@@ -44,37 +84,21 @@ class User
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $tel;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $motdepasse;
+    private $status ='DESACTIVE';
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $role;
-
-
-
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function getCin(): ?string
+    
+    public function getCin(): ?int
     {
         return $this->cin;
     }
-
     public function setCin(string $cin): self
     {
         $this->cin = $cin;
@@ -82,6 +106,86 @@ class User
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
 
     public function setNom(string $nom): self
     {
@@ -138,60 +242,28 @@ class User
         return $this;
     }
 
-    public function getTel(): ?string
+    public function getTel(): ?int
     {
         return $this->tel;
     }
 
-    public function setTel(string $tel): self
+    public function setTel(int $tel): self
     {
         $this->tel = $tel;
 
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
+    public function getStatus(): ?string
+    {   
+        return $this->status;
     }
 
-    public function setEmail(string $email): self
+    public function setStatus(?string $status): self
     {
-        $this->email = $email;
+        
+        $this->status = $status;
 
         return $this;
     }
-
-    public function getMotdepasse(): ?string
-    {
-        return $this->motdepasse;
-    }
-
-    public function setMotdepasse(string $motdepasse): self
-    {
-        $this->motdepasse = $motdepasse;
-
-        return $this;
-    }
-
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-   }
+}
