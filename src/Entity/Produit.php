@@ -51,7 +51,6 @@ class Produit
     public $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="produits")
      * @ORM\JoinColumn(name="cat", referencedColumnName="idcategorie")
      * @ORM\Column(type="integer")
      */
@@ -61,6 +60,14 @@ class Produit
      * @ORM\Column(type="string", length=255)
      */
     public $catName;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="produits")
+     * @ORM\JoinColumn( referencedColumnName="refcommande")
+     */
+    private $commande;
+
+    
    
      
     public function getId(): ?int
@@ -142,4 +149,17 @@ class Produit
         return $this;
     }
 
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    
 }
