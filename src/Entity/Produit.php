@@ -61,11 +61,7 @@ class Produit
      */
     public $catName;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="produits")
-     * @ORM\JoinColumn( referencedColumnName="refcommande")
-     */
-    private $commande;
+    
 
     
    
@@ -145,18 +141,6 @@ class Produit
     public function setCatName(string $catName): self
     {
         $this->catName = $catName;
-
-        return $this;
-    }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->commande;
-    }
-
-    public function setCommande(?Commande $commande): self
-    {
-        $this->commande = $commande;
 
         return $this;
     }

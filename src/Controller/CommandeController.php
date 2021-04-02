@@ -55,13 +55,9 @@ class CommandeController extends AbstractController
      * @Route ("/AddCommande",name="AddCommande")
      */
 
-    public function add(Request $request ,ProduitRepository $produitRepository)
+    public function add(Request $request )
     {
-        $produit = $produitRepository->findAll();
-        $prod=array();
-        foreach ($produit as $produits) {
-            array_push($prod, $produits->nomproduit);
-        }
+       
        
         $Commande = new Commande();
         $form = $this->createForm(CommandeType::class, $Commande);
@@ -69,7 +65,7 @@ class CommandeController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) 
         {
-            $prodid= $produitRepository->findOneBy(['nomproduit'=>$Commande->produits])->numproduit;
+           
         
             $em = $this->getDoctrine()->getManager();
             $em->persist($Commande);
@@ -78,8 +74,8 @@ class CommandeController extends AbstractController
 
         }
         return $this->render('Commande/add.html.twig',[
-            'form'=>$form->createView(),
-            'produits'=>$prod
+            'form'=>$form->createView()
+            
         ]);
     }
     /**
