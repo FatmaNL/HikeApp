@@ -68,6 +68,16 @@ class User
      */
     private $commandes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Forum::class, mappedBy="User",orphanRemoval=true)
+     */
+    private $Forum;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="User",orphanRemoval=true)
+     */
+    private $userRep;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();

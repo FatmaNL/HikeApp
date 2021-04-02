@@ -35,7 +35,7 @@ class EvenementController extends AbstractController
     public function affiche(EvenementRepository $event)
     {
         $evenement = $event->findAll();
-        return $this->render('evenement/index.html.twig', ['evenement1' => $evenement]);
+        return $this->render('evenement/afficheForum.twig', ['evenement1' => $evenement]);
     }
 
     /**
