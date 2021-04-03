@@ -109,14 +109,15 @@ class CommandeController extends AbstractController
     public function indexaction(Request $request)
     {
         $snappy = $this->get("knp_snappy.pdf");
-        $filename = "myfirst";
-        $website = "http://ourcodeworld.com";
+        $html = "<h1>hrloo<h1>";
+        $filename = "downloadpdf";
+    
         return new Response(
-            $snappy->getOutput($website),
+            $snappy->getOutputFromHtml($html),
             200,
             array(
                 'Content-Type' => 'application/pdf',
-                'content-Disposition' => 'inline; filename="'.$filename. '.pdf'
+                'content-Disposition' => 'attachement; filename="'.$filename.'.pdf"'
             )
         );
         
