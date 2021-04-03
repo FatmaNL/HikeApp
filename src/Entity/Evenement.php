@@ -126,7 +126,7 @@ class Evenement
 
     /**
      * @ORM\OneToOne(targetEntity=Transport::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false, referencedColumnName="id")
+     * @ORM\JoinColumn(nullable=false, referencedColumnName="idtransport")
      */
     private $transport;
 

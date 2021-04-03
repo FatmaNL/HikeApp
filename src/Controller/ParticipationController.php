@@ -10,6 +10,8 @@ use App\Repository\UserRepository;
 use App\Repository\ParticipationRepository;
 use App\Entity\Participation;
 use App\Entity\Evenement;
+use App\Entity\User;
+
 
 class ParticipationController extends AbstractController
 {

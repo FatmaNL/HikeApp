@@ -1,0 +1,90 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+	<section>
+		<div class="section-inner">
+			<div class="container">
+				<div class="col-md-12">
+					<ul class="portfolio-items nopadding-lr isotope list-unstyled">
+						<li class="col-sm-4 col-xs-12 portfolio-item nopadding-lr apps isotope-item">
+							<div class="hover-item">
+								<a href=""><img src="{{ asset('uploads/images/' ~ produit.image) }}" class="img-responsive smoothie" alt=""></a>
+								<div class="overlay-item-caption smoothie"></div>
+								<div class="hover-item-caption smoothie">
+									<div class="vertical-center smoothie">
+										<h3 class="smoothie mb30">
+											<a href="single-portfolio-fullscreen.html" title="view project">{{produit.nomproduit}}</a>
+										</h3>
+									</div>
+								</div>
+
+							</div>
+						</li>
+
+						<li >
+							<div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+								<div class="icon-box-1 match-height mb30">
+									<i class="fa-4x pe-7s-headphones"></i>
+									<div class="content-area">
+										<h3 class="title">QUANTITE:&nbsp;&nbsp;{{ produit.quantite }}</h3>
+									</div>
+								</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+								<div class="icon-box-1 match-height mb30">
+									<i class="fa-4x pe-7s-headphones"></i>
+									<div class="content-area">
+
+										<h3 class="title">
+											PRIX:&nbsp;&nbsp;{{ produit.prix }}</h3>
+									</div>
+								</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+								<div class="icon-box-1 match-height mb30">
+									<i class="fa-4x pe-7s-headphones"></i>
+									<div class="content-area">
+										<h3 class="title">Categorie:&nbsp;&nbsp;{{ produit.catName }}</h3>
+									</div>
+								</div>
+							</div>
+
+							<br><br><br><br>
+							<div class="col-sm-5 wow fadeIn" data-wow-delay="0.2s">
+								<span id="1" class="fa fa-star checked"></span>
+								<span id="2" class="fa fa-star checked"></span>
+								<span id="3" class="fa fa-star checked"></span>
+								<span id="4" class="fa fa-star"></span>
+								<span id="5" class="fa fa-star"></span>
+							</div>
+							{#{{ app.user.username }}#}
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+	{% block js %}
+
+		<script>
+			spans = document.querySelectorAll('span[class*="fa fa-star"]')
+spans.forEach(sp => sp.addEventListener("click", function () {
+id = sp.getAttribute('id');
+spans.forEach(element => {
+id2 = element.getAttribute('id');
+if (id2 <= id) {
+element.classList.add('checked');
+} else {
+element.classList.remove('checked');
+}
+
+
+});
+}));
+		</script>
+
+	{% endblock %}
+{% endblock %}

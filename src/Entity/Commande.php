@@ -3,10 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CommandeRepository::class)
+ * @UniqueEntity(
+ * fields= {"refcommande"},
+ * message= "La reference est deja utilisée")
  */
 class Commande
 {
@@ -14,6 +21,8 @@ class Commande
     /**
      * @ORM\Id
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="reference cannot be empty")
+     * @Assert\Length(min="1",max="20")
      */
     private $refcommande;
 
@@ -24,15 +33,13 @@ class Commande
 
     /**
      * @ORM\Column(type="string", length=250)
+     * @Assert\NotBlank(message="state cannot be empty")
+     * @Assert\Length(min="3",max="20")
      */
     private $etat;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commandes")
-     * @ORM\JoinColumn(name="user_cin", referencedColumnName="cin")
-     */
-    private $user;
 
+    
     public function getrefcommande(): ?string
     {
         return $this->refcommande;
@@ -71,17 +78,7 @@ class Commande
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
 
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
 
 

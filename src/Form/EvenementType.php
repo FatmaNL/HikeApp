@@ -35,7 +35,7 @@ class EvenementType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
                 'imagine_pattern' => null,
-                'asset_helper' => true,
+                'asset_helper' => true
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => ['Randonnée' => 'Randonnee', 'Camping' => 'Camping']

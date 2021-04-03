@@ -64,11 +64,6 @@ class User
     private $role;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="User",orphanRemoval=true)
-     */
-    private $commandes;
-
-    /**
      * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="client")
      */
     private $participations;
@@ -259,6 +254,5 @@ class User
 
         return $this;
     }
-
-
 }
+

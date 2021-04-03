@@ -26,6 +26,9 @@
     "doctrine/dbal": {
         "version": "2.12.1"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
         "recipe": {
@@ -103,7 +106,7 @@
         "version": "v4.10.4"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.3.21"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"

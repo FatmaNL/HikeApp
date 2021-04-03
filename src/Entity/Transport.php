@@ -15,7 +15,7 @@ class Transport
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idtransport;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -34,7 +34,7 @@ class Transport
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->idtransport;
     }
 
     public function getType(): ?string
