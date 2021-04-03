@@ -28,6 +28,9 @@ class ProduitController extends AbstractController
      */
     public function affiche(ProduitRepository $repo, Request $request)
     {
+        if($this->getUser()->getRoles()['0'] == 'ROLE_USER' || $this->getUser()->getRoles()['0'] == 'ROLE_ORGANISATEUR'){
+            return $this->redirectToRoute('home');
+        }
         if ($request->query->get('search')) {
             $data = $request->get('search');
             $produit = $repo->findBy(['nomproduit' => $data]);

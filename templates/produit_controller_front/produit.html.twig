@@ -13,6 +13,7 @@
 									<div class="vertical-center smoothie">
 										<h3 class="smoothie mb30">
 											<a href="single-portfolio-fullscreen.html" title="view project">{{produit.nomproduit}}</a>
+											<div id='productID'  hidden>{{ produit.numproduit }}</div>
 										</h3>
 									</div>
 								</div>
@@ -57,72 +58,15 @@
 									<div class="content-area">
 										<h3 class="title">User Rating</h3>
 
-										<span id='id1' class="fa fa-star checked"></span>
-										<span id='id2' class="fa fa-star checked"></span>
-										<span id='id3' class="fa fa-star checked"></span>
-										<span id='id4' class="fa fa-star checked"></span>
-										<span id='id5' class="fa fa-star"></span>
+										<span id='id1' class="fa fa-star {{  (user_rate >= 1) ? 'checked' : ''  }}"></span>
+										<span id='id2' class="fa fa-star {{  (user_rate >= 2) ? 'checked' : ''  }}"></span>
+										<span id='id3' class="fa fa-star {{  (user_rate >= 3) ? 'checked' : ''  }}"></span>
+										<span id='id4' class="fa fa-star {{  (user_rate >= 4) ? 'checked' : ''  }}"></span>
+										<span id='id5' class="fa fa-star {{  (user_rate >= 5) ? 'checked' : ''  }}"></span>
 
-										<p>4.1 average based on 254 reviews.</p>
+										<p><span id="average">{{ average }}</span> average based on <span id="total">{{ total }}</span> reviews.</p>
 										<hr style="border:3px solid #f1f1f1">
 
-										<div class="row">
-											<div class="side">
-												<div>5 star</div>
-											</div>
-											<div class="middle">
-												<div class="bar-container">
-													<div class="bar-5"></div>
-												</div>
-											</div>
-											<div class="side right">
-												<div>150</div>
-											</div>
-											<div class="side">
-												<div>4 star</div>
-											</div>
-											<div class="middle">
-												<div class="bar-container">
-													<div class="bar-4"></div>
-												</div>
-											</div>
-											<div class="side right">
-												<div>63</div>
-											</div>
-											<div class="side">
-												<div>3 star</div>
-											</div>
-											<div class="middle">
-												<div class="bar-container">
-													<div class="bar-3"></div>
-												</div>
-											</div>
-											<div class="side right">
-												<div>15</div>
-											</div>
-											<div class="side">
-												<div>2 star</div>
-											</div>
-											<div class="middle">
-												<div class="bar-container">
-													<div class="bar-2"></div>
-												</div>
-											</div>
-											<div class="side right">
-												<div>6</div>
-											</div>
-											<div class="side">
-												<div>1 star</div>
-											</div>
-											<div class="middle">
-												<div class="bar-container">
-													<div class="bar-1"></div>
-												</div>
-											</div>
-											<div class="side right">
-												<div>20</div>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -225,10 +169,25 @@
 {% endblock %}
 {% block js %}
 
-	<script>
-		spans = document.querySelectorAll('span[class*="fa fa-star"]')
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myArr = JSON.parse(this.responseText);
+     document.getElementById('total').innerText = myArr['total']
+	 document.getElementById('average').innerText = myArr['average']
+  }
+};
+
+spans = document.querySelectorAll('span[class*="fa fa-star"]')
 spans.forEach(sp => sp.addEventListener("click", function () {
 id = sp.getAttribute('id');
+temp_id = id.replace('id','');
+productID = document.getElementById('productID').firstChild.nodeValue
+
+xhttp.open("POST", "/produitClient/prod/rate/"+productID+"/"+temp_id, true);
+xhttp.send();
+
 spans.forEach(element => {
 id2 = element.getAttribute('id');
 if (id2 <= id) {

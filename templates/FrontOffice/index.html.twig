@@ -269,20 +269,30 @@
                             </li>
                         </ul>
                     </li>
-                    {% if not app.user %}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="dropdown">
-                        <a href="{{ path('security_register') }}" class="dropdown-toggle">Register</a>
+                        <a href="{{ path('admin_interface') }}" class="dropdown-toggle">Admin Interface</a>
+                    </li>
+                    {% elseif is_granted('ROLE_USER') %}
+                    <li class="dropdown">
+                        <a href="{{ path('profil_user') }}" class="dropdown-toggle">User Profil</a>
                     </li>
                     {% endif %}
 
 
                     {% if not app.user %}
                     <li class="dropdown">
-                        <a href="{{ path('security_login') }}" class="dropdown-toggle">Login</a>
+                        <a href="{{ path('app_register') }}" class="dropdown-toggle">Register</a>
+                    </li>
+                    {% endif %}
+
+                    {% if not app.user %}
+                    <li class="dropdown">
+                        <a href="{{ path('app_login') }}" class="dropdown-toggle">Login</a>
                     </li>
                     {% else %}
                     <li class="dropdown">
-                        <a href="{{ path('security_logout') }}" class="dropdown-toggle">Logout</a>
+                        <a href="{{ path('app_logout') }}" class="dropdown-toggle">Logout</a>
                     </li>
                     {% endif %}
                 </ul>

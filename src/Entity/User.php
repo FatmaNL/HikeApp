@@ -17,6 +17,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * fields= {"email"},
  * message= "L'email est deja utilisé"
  * )
+ * @UniqueEntity(
+ * fields= {"cin"},
+ * message= "Votre cin est deja utilisé"
+ * )
  */
 class User implements UserInterface
 {
@@ -24,6 +28,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\Column(type="string")
      * @Assert\Length(min="8", minMessage="Votre cin est incorrect")
+     * @Assert\Length(max="8", maxMessage="Votre cin est incorrect")
      */
     private $cin;
 
@@ -38,9 +43,9 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="json")
      */
-    private $roles ;
+    private $roles=[] ;
 
     /**
      * @var string The hashed password
@@ -84,7 +89,12 @@ class User implements UserInterface
     private $tel;
 
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status ='DESACTIVE';
 
+    
     public function getCin(): ?int
     {
         return $this->cin;
@@ -121,16 +131,16 @@ class User implements UserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $role[] = 'ROLE_USER';
+        $roles[] = 'ROLE_USER';
 
-        return $roles;
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
@@ -244,12 +254,16 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
+    public function getStatus(): ?string
+    {   
+        return $this->status;
     }
 
-   }
+    public function setStatus(?string $status): self
+    {
+        
+        $this->status = $status;
+
+        return $this;
+    }
+}

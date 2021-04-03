@@ -1,13 +1,13 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>Login</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -35,14 +35,40 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="{{ path('security_login') }}" method="post">
+      <form class="form-login" action="{{ path('app_login') }}" method="post">
         <h2 class="form-login-heading">sign in now</h2>
+        
         <div class="login-wrap">
-          <input type="text" class="form-control" placeholder="Email" name="_username">
-          <br>
-          <input type="password" class="form-control" placeholder="Password" name="_password">
-          <br>
-          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+          {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+          {% endif %}
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+            <br>
+            <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <br>
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            >
+        
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+        
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+            
+            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN
+            </button>
+          <div class="registration">
+            Don't have an account yet?<br/>
+            <a class="" href="{{ path('app_register') }}">
+              Create an account
+              </a>
+          </div>
         </div>        
         <!-- modal -->
       </form>

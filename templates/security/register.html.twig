@@ -39,8 +39,15 @@
         <h2 class="form-login-heading">sign up now</h2>
         <div class="login-wrap">
           {{ form_start(form)}}
+          <div class="form-error">
+            {{ form_errors(form) }}
+          </div>
           {{form_widget(form)}}
-          <center><button type="submit" class="btn btn-success">Register</button></center>
+          <div>
+          <center>
+            <button type="submit" class="btn btn-success">Register</button>
+            <a class="btn btn-primary" href="{{ path('home') }}">Cancel</a></center>
+          </div>
           {{form_end(form)}}
           
         </div>
