@@ -27,6 +27,11 @@ class Transport
      */
     private $volumemax;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nombreTransports;
+
     public function getId(): ?int
     {
         return $this->idtransport;
@@ -52,6 +57,18 @@ class Transport
     public function setVolumemax(int $volumemax): self
     {
         $this->volumemax = $volumemax;
+
+        return $this;
+    }
+
+    public function getNombreTransports(): ?int
+    {
+        return $this->nombreTransports;
+    }
+
+    public function setNombreTransports(int $nombreTransports): self
+    {
+        $this->nombreTransports = $nombreTransports;
 
         return $this;
     }

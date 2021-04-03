@@ -74,29 +74,23 @@
 {% block main %}
 
 <section class="wrapper">
-	<h3><i class="fa fa-angle-right"></i> Les Évènements</h3>
+	<h3><i class="fa fa-angle-right"></i> Les Sentiers</h3>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="content-panel" style="padding: 15px">
 				{{ form_start(formupdate, {'attr' : {'novalidate': 'novalidate' }}) }}
 
-                {{ form_row(formupdate.nomevenement,{'label' : 'Nom :'} , {'attr' : {'placeholder': 'Nom' }} ) }}
+                {{ form_row(formupdate.nomsentier,{'label' : 'Nom :'} , {'attr' : {'placeholder': 'Nom' }} ) }}
 
 				{# {{ form_errors(formupdate.depart) }} #}
-				{{ form_label(formupdate.depart, "Depart: ") }}
-				{{ form_widget(formupdate.depart, {'attr' : {'placeholder': 'Depart' }})}}
+				{{ form_label(formupdate.duree, "Durée: ") }}
+				{{ form_widget(formupdate.duree, {'attr' : {'placeholder': 'Durée' }})}}
 
-				{{ form_row(formupdate.destination,{'label' : 'Destination :'} , {'attr' : {'placeholder': 'Destination' }} ) }}
-				{{ form_row(formupdate.nbparticipant,{'label' : 'Nombre des participants :'} , {'attr' : {'placeholder': 'participants' }} ) }}
-				{{ form_row(formupdate.dateevenement,{'label' : 'Date :'}) }}
-				{{ form_row(formupdate.duree,{'label' : 'Durée :'}, {'attr' : {'placeholder': 'Durée' }} ) }}
-				{{ form_row(formupdate.prix,{'label' : 'Prix :'}, {'attr' : {'placeholder': 'Prix' }} ) }}
-				{{ form_row(formupdate.programme,{'label' : 'Programme :'}, {'attr' : {'placeholder': 'Programme' }} ) }}
-				{{ form_row(formupdate.contact,{'label' : 'Contact :'}, {'attr' : {'placeholder': 'Contact' }} ) }}
-				{{ form_row(formupdate.infos,{'label' : 'Informations :'}, {'attr' : {'placeholder': 'Informations' }} ) }}
-				{{ form_row(formupdate.type,{'label' : 'Type :'}, {'attr' : {'placeholder': 'Rando/Camp' }} ) }}
-				{{ form_row(formupdate.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
-
+				{{ form_row(formupdate.distance,{'label' : 'Distance :'} , {'attr' : {'placeholder': 'Distance' }} ) }}
+				{{ form_row(formupdate.difficulte,{'label' : 'Difficulté :'} , {'attr' : {'placeholder': 'Difficulté' }} ) }}
+				{{ form_row(formupdate.departsentier,{'label' : 'Depart :'}, {'attr' : {'placeholder': 'Depart' }}) }}
+				{{ form_row(formupdate.destinationsentier,{'label' : 'Destination :'}, {'attr' : {'placeholder': 'Destination' }} ) }}
+				
 				{{ form_end(formupdate) }}
 			</div>
 		</div>

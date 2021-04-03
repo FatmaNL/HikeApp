@@ -1,0 +1,32 @@
+{% extends 'frontoffice-base.html.twig' %}
+
+{% block mainmenu %}
+  <li><a href="#">Home</a></li>
+{% endblock %}
+
+{% block maincontent %}
+    <h2 class="section-heading">{{ event.nomevenement }}</h1>
+
+    <b>Programme: <b> {{event.programme}} <br>
+
+    <b>Contact: <b> {{event.contact}} <br>
+
+    <b>Prix: <b> {{event.prix}} <br>
+
+    <b>Max Participants: <b> {{event.nbparticipant}} <br>
+
+
+    <h4>{{full}}</h4>
+
+    {% if full %}
+        <h3 class="warn">Full</h3>
+    {% elseif participated %}
+        <h3>Participated</h3>
+    {% else %}
+        <a class="btn btn-primary" href="{{path ('eventparticipation', {id: event.id})}}">Participer</a>
+    {% endif %}
+
+  {# {% for event in events %}
+    event.nomevenement <br>
+  {% endfor %} #}
+{% endblock %}

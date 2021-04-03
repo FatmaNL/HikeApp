@@ -63,7 +63,16 @@ class User
      */
     private $role;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="client")
+     */
+    private $participations;
 
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+    }
 
     public function getNom(): ?string
     {
@@ -194,4 +203,56 @@ class User
         return $this->commandes;
     }
 
-   }
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getUser() === $this) {
+                $commande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Participation[]
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getClient() === $this) {
+                $participation->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+}
+

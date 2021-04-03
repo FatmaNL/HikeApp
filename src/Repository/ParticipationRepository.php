@@ -19,6 +19,18 @@ class ParticipationRepository extends ServiceEntityRepository
         parent::__construct($registry, Participation::class);
     }
 
+    public function findOneByClientAndEvent($client, $event): ?Participation
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.client = :client')
+            ->andWhere('p.evenement = :event')
+            ->setParameter('client', $client)
+            ->setParameter('event', $event)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return Participation[] Returns an array of Participation objects
     //  */
