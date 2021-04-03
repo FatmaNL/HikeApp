@@ -8,10 +8,12 @@ use App\Entity\Rating;
 use App\Entity\User;
 use App\Repository\ProduitRepository;
 use App\Repository\RatingRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProduitControllerFrontController extends AbstractController
 {
@@ -29,9 +31,16 @@ class ProduitControllerFrontController extends AbstractController
     /**
      * @Route("/produitClient", name="afficheProduitFront")
      */
-    public function affiche(ProduitRepository $repo)
+    public function affiche(ProduitRepository $repo,PaginatorInterface $page,Request $request)
     {
-        $produit=$repo->findAll();
+        $donnee = $repo->findAll();
+            $produit=$page->paginate(
+                $donnee,
+                $request->query->getInt('page',1),
+                1
+            );
+
+            
         return $this->render('produit_controller_front/affiche.html.twig', [
             'produit' => $produit
         ]);

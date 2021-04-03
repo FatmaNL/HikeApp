@@ -8,6 +8,7 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\CategorieRepository;
 use App\Repository\ProduitRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,6 +37,7 @@ class ProduitController extends AbstractController
             $produit = $repo->findBy(['nomproduit' => $data]);
         } else {
             $produit = $repo->findAll();
+           
         }
 
 
