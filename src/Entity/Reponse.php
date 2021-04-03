@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use App\Entity\Forum;
 use App\Repository\ReponseRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,6 +38,18 @@ class Reponse
      * @ORM\JoinColumn(name="user_cin", referencedColumnName="cin")
      */
     private $userRep;
+
+    public function setForum(Forum $forum): self
+    {
+        $this->forum = $forum;
+
+        return $this;
+    }
+
+    public function getForum(): ?Forum
+    {
+        return $this->forum;
+    }
 
     public function getId(): ?int
     {

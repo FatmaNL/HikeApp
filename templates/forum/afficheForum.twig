@@ -252,6 +252,7 @@
                         <span>Forum</span>
                     </a>
                 </li>
+            </ul>
                 <!-- sidebar menu end-->
         </div>
     </aside>
@@ -280,9 +281,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr {% for f in forum1 %}>
+                        < {% for f in forum1 %}>
                             <td>{{ f.id }}</td>
-                            <td>{{ f.sujet }}</td>
+                            <td><a href="{{ path('forum',{'id':f.id}) }}">{{ f.sujet }}</td></td>
                             <td>{{ f.description|raw }}</td>
                             <td>{{ f.date|date('d-m-Y') }}</td>
                             <td><div><i class="fa fa-circle" aria-hidden="true" style="color: yellow"></i> {{ f.status }}</div></td>
