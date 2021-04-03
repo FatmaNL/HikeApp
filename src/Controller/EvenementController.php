@@ -42,20 +42,26 @@ class EvenementController extends AbstractController
 
     /**
      * @param SentierRepository $sentier
+     * @param EvenementRepository $event
      * @param Request $req
      * @return Response
      * @Route ("evenement/addevent",name="addevent")
      */
-    public function add(Request $req, SentierRepository $sent): Response
+    public function add(Request $req, SentierRepository $sent, EvenementRepository $event): Response
     {
         $sentier = $sent->findAll();
+        $evenementobj = $event->findAll();
         $evenement = new Evenement();
-        $transport = new Transport();
+        //$transport = new Transport();
         $eventform = $this->createForm(EvenementType::class, $evenement);
-        $transportform = $this->createForm(TransportType::class, $transport);
         $eventform->add('Ajouter', SubmitType::class);
+
         $eventform->handleRequest($req);
         if ($eventform->isSubmitted() && $eventform->isValid()) {
+            // $imageFile = $req->get('imageFile');
+
+            // $evenement->setImageFile($imageFile);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
@@ -70,9 +76,8 @@ class EvenementController extends AbstractController
         }*/
         return $this->render('evenement/add.html.twig', 
         [ 
-            'sentier' => $sentier,
             'form' => $eventform->createView(),
-            'form' => $transportform->createView()
+            'evenementList' => $evenementobj
         ]);
     }
 

@@ -1,7 +1,6 @@
 {% extends "backoffice-base.html.twig" %}
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
-{% form_theme formtransport 'bootstrap_4_layout.html.twig' %}
 
 {% block title %}Nouvel Évenement{% endblock title %}
 
@@ -89,6 +88,9 @@
 				{{ form_widget(form.depart, {'attr' : {'placeholder': 'Depart' }})}}
 
 				{{ form_row(form.destination,{'label' : 'Destination :'} , {'attr' : {'placeholder': 'Destination' }} ) }}
+                
+                {{ form_widget(form.imageFile) }}
+
 				{{ form_row(form.nbparticipant,{'label' : 'Nombre des participants :'} , {'attr' : {'placeholder': 'participants' }} ) }}
 				{{ form_row(form.dateevenement,{'label' : 'Date :'}) }}
 				{{ form_row(form.duree,{'label' : 'Durée :'}, {'attr' : {'placeholder': 'Durée' }} ) }}
@@ -98,61 +100,48 @@
 				{{ form_row(form.infos,{'label' : 'Informations :'}, {'attr' : {'placeholder': 'Informations' }} ) }}
 				{{ form_row(form.type,{'label' : 'Type :'}, {'attr' : {'placeholder': 'Rando/Camp' }} ) }}
 				{{ form_row(form.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
-
+                
 				{{ form_end(form) }}
 
-                {{ form_start(formtransport, {'attr' : {'novalidate': 'novalidate' }}) }}
+                {# {{ form_start(formtransport, {'attr' : {'novalidate': 'novalidate' }}) }}
 
-                {{ form_row(formtransport.type,{'label' : 'Type :'} , {'attr' : {'placeholder': 'Type' }} ) }}
+                {{ form_row(formtransport.type,{'label' : 'Type :'} , {'attr' : {'placeholder': 'Type' }} ) }} #}
 
 				{# {{ form_errors(formupdate.depart) }} #}
-				{{ form_label(formtransport.volumemax, "Volume Max: ") }}
+				{# {{ form_label(formtransport.volumemax, "Volume Max: ") }}
 				{{ form_widget(formtransport.volumemax, {'attr' : {'placeholder': 'Volume max' }})}}
 
                 {{ form_row(formtransport.nombreTransports,{'label' : 'Nombre :'} , {'attr' : {'placeholder': 'Nombre' }} ) }}
 
-				{{ form_end(formtransport) }}
+				{{ form_end(formtransport) }} #}
                 
-                    {#sentiers#}
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="content-panel" style="padding: 20px">
-                  <h4><i class="fa fa-angle-right"></i>Liste des Sentiers pr event</h4>
-                  <hr>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <td>Nom</td>
-                        <td>Durée</td>
-                        <td>Distance</td>
-                        <td>Difficulté</td>
-                        <td>Départ</td>
-                        <td>Destination</td>
-                        <td></td>
-                        <td>check</td>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr {% for s in sentier %}>
-                            <td>{{ s.nomsentier }}</td>
-                            <td>{{ s.duree }}</td>
-                            <td>{{ s.distance }}</td>
-                            <td>{{ s.difficulte }}</td>
-                            <td>{{ s.departsentier }}</td>
-                            <td>{{ s.destinationsentier }}</td>
-                            <td><a href="{{ path ('updatesentier',{'id':s.id}) }}">Modifier</a></td>
-                            <td></td>
-                        </tr {% endfor %}>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
 			</div>
 		</div>
 	</div>
 </section>
 
 {% endblock main %}
+
+{% block javascripts %}
+
+<script type="application/javascript">
+      //const $ = require('jquery');
+      $(document).ready(function(){
+        $('#evenement_type').change((event)=>{
+            console.log($(evenement_sentiers));
+           var type = $(event.target).val();
+            if (type === 'Randonnee'){
+                $('#evenement_sentiers')[0].parentElement.hidden=false;
+                $('#evenement_circuit')[0].parentElement.hidden=false;
+            }
+            else {
+                $('#evenement_sentiers')[0].parentElement.hidden=true;
+                $('#evenement_circuit')[0].parentElement.hidden=true;
+            }
+        }
+          
+        );
+      });
+</script>
+
+{% endblock javascripts %}

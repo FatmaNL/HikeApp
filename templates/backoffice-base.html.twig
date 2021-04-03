@@ -34,9 +34,7 @@
       {# {{ encore_entry_link_tags('app') }} #}
     {% endblock %}
 
-    {% block javascripts %}
-      {# {{ encore_entry_script_tags('app') }} #}
-    {% endblock %}
+    
   </head>
 
   <body>
@@ -1086,7 +1084,7 @@
       <!-- script for this page -->
       <script src="{{asset('lib/sparkline-chart.js')}}"></script>
       <script src="{{asset('lib/zabuto_calendar.js')}}"></script>
-      <script type="text/javascript">
+      <!--<script type="text/javascript">
         $(document).ready(function () { var unique_id = $.gritter.add({ //
         (string | mandatory) the heading of the notification title: 'Welcome to
         Dashio!', // (string | mandatory) the text inside the notification text:
@@ -1099,7 +1097,7 @@
         want to apply to that specific message class_name: 'my-sticky-class' });
 
         return false; });
-      </script>
+      </script> -->
       <script type="application/javascript">
         $(document).ready(function () { $("#date-popover").popover({ html: true,
         trigger: "manual" }); $("#date-popover").hide();
@@ -1115,6 +1113,10 @@
         + id).data("navigation"); var to = $("#" + id).data("to");
         console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year); }
       </script>
+    {% endblock %}
+    
+    {% block javascripts %}
+      {# {{ encore_entry_script_tags('app') }} #}
     {% endblock %}
   </body>
 </html>

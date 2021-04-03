@@ -43,7 +43,7 @@
 
     <div class="preloader">
         <div class="preloader-img">
-            <span class="loading-animation animate-flicker"><img src="assets/img/loading.GIF" alt="loading"/></span>
+            <span class="loading-animation animate-flicker"><img src="/assets/img/loading.GIF" alt="loading"/></span>
         </div>
     </div>
 
@@ -95,8 +95,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand smoothie logo logo-light" href="index.html"><img src="assets/img/logo.png" alt="logo"></a>
-                <a class="navbar-brand smoothie logo logo-dark" href="index.html"><img src="assets/img/logo_reverse.png" alt="logo"></a>
+                <a class="navbar-brand smoothie logo logo-light" href="index.html"><img src="/assets/img/logo.png" alt="logo"></a>
+                <a class="navbar-brand smoothie logo logo-dark" href="index.html"><img src="/assets/img/logo_reverse.png" alt="logo"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -310,105 +310,46 @@
     <header id="headerwrap" class="dark-wrapper backstretched special-max-height no-overlay">
         <div class="container vertical-center">
             <div class="intro-text vertical-center text-left smoothie">
-                <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s">This Is Kompleet</div>
-                <div class="intro-sub-heading wow fadeIn secondary-font" data-wow-delay="0.4s">Take a look our <span class="rotate">awesome home pages, sexy portfolio items, flexible blog examples</span></div>
+                <div class="intro-heading wow fadeIn heading-font" data-wow-delay="0.2s">HikeApp</div>
+                <div class="intro-sub-heading wow fadeIn secondary-font" data-wow-delay="0.4s">Take a look our <span class="rotate">awesome events, hiking trails, camping groups</span></div>
             </div>
         </div>
     </header>
 
+    {% block maincontent %}
     <section class="white-bg">
         <div class="section-inner masonry-portfolio container demo-selector" data-masonry-cols="4">
             <div>
                 <div>
                     <ul class="masonry-portfolio-items isotope list-unstyled">
-
                         {% block eventlist %}
-                        <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
-                            <div class="hover-item">
-                                <img src="assets/img/homepages/agency-1.jpg" class="img-responsive smoothie" alt="">
-                                <div class="overlay-item-caption smoothie"></div>
-                                <div class="hover-item-caption smoothie">
-                                    <div class="vertical-center smoothie">
-                                        <h3 class="smoothie mb30"><a href="index-agency-1.html" title="view project">Agency 1</a></h3>
-                                        <a href="index-agency-1.html" class="smoothie btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
-                            <div class="hover-item">
-                                <img src="assets/img/homepages/blog-2.jpg" class="img-responsive smoothie" alt="">
-                                <div class="overlay-item-caption smoothie"></div>
-                                <div class="hover-item-caption smoothie">
-                                    <div class="vertical-center smoothie">
-                                        <h3 class="smoothie mb30"><a href="index-blog-2.html" title="view project">Blog 2</a></h3>
-                                        <a href="index-agency-1.html" class="smoothie btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
-                            <div class="hover-item">
-                                <img src="assets/img/homepages/corporate-1.jpg" class="img-responsive smoothie" alt="">
-                                <div class="overlay-item-caption smoothie"></div>
-                                <div class="hover-item-caption smoothie">
-                                    <div class="vertical-center smoothie">
-                                        <h3 class="smoothie mb30"><a href="index-corporate-1.html" title="view project">Corporate 1</a></h3>
-                                        <a href="index-agency-1.html" class="smoothie btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
-                            <div class="hover-item">
-                                <img src="assets/img/homepages/landing-2.jpg" class="img-responsive smoothie" alt="">
-                                <div class="overlay-item-caption smoothie"></div>
-                                <div class="hover-item-caption smoothie">
-                                    <div class="vertical-center smoothie">
-                                        <h3 class="smoothie mb30"><a href="index-landing-2.html" title="view project">Landing 2</a></h3>
-                                        <a href="index-agency-1.html" class="smoothie btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
-                            <div class="hover-item">
-                                <img src="assets/img/homepages/portfolio-1.jpg" class="img-responsive smoothie" alt="">
-                                <div class="overlay-item-caption smoothie"></div>
-                                <div class="hover-item-caption smoothie">
-                                    <div class="vertical-center smoothie">
-                                        <h3 class="smoothie mb30"><a href="index-portfoio-1.html" title="view project">Portfolio 1</a></h3>
-                                        <a href="index-agency-1.html" class="smoothie btn btn-primary">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+
                         {% endblock %}
-                        
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+    {% endblock maincontent %}
 
     <div id="footer-wrapper" class="footer-image-bg">
         <section class="transparent-wrapper">
             <div class="section-inner">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        {# <div class="col-md-4">
                             <div class="widget about-us-widget">
                                 <h4 class="widget-title"><strong>Global</strong> Coverage</h4>
                                 <p>Professionally monetize team building materials for 24/7 results. Holisticly transition corporate platforms vis-a-vis cutting-edge experiences. Dynamically strategize ubiquitous applications for premier initiatives. Interactively seize resource sucking niche markets.</p>
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> #}
+                        {# <div class="col-md-4">
                             <div class="widget">
                                 <h4 class="widget-title"><strong>Latest</strong> Articles</h4>
                                 <div>
                                     <div class="media">
                                         <div class="pull-left">
-                                            <img class="widget-img" src="assets/img/widget/widget1.jpg" alt="">
+                                            <img class="widget-img" src="/assets/img/widget/widget1.jpg" alt="">
                                         </div>
                                         <div class="media-body">
                                             <span class="media-heading"><a href="#">Blog Post A</a></span>
@@ -417,7 +358,7 @@
                                     </div>
                                     <div class="media">
                                         <div class="pull-left">
-                                            <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
+                                            <img class="widget-img" src="/assets/img/widget/widget2.jpg" alt="">
                                         </div>
                                         <div class="media-body">
                                             <span class="media-heading"><a href="#">Blog Post B</a></span>
@@ -426,8 +367,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> #}
+                        {# <div class="col-md-4">
                             <div class="widget">
                                 <h4 class="widget-title">Popular Tags</h4>
                                 <div class="tagcloud">
@@ -445,7 +386,7 @@
                                     <a href="#" class="tag-link btn btn-theme btn-white btn-xs smoothie" title="3 topics">MP3</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> #}
                     </div>
                 </div>
             </div>
@@ -489,7 +430,7 @@
 
 </div>
 
-<div class="flexpanel">
+{# <div class="flexpanel">
     <div class="viewport-wrap">
         <div class="viewport">
             <div class="widget mb50">
@@ -497,7 +438,7 @@
                 <div>
                     <div class="media">
                         <div class="pull-left">
-                            <img class="widget-img" src="assets/img/widget/widget1.jpg" alt="">
+                            <img class="widget-img" src="/assets/img/widget/widget1.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">Panic In London</a></span>
@@ -506,7 +447,7 @@
                     </div>
                     <div class="media">
                         <div class="pull-left">
-                            <img class="widget-img" src="assets/img/widget/widget2.jpg" alt="">
+                            <img class="widget-img" src="/assets/img/widget/widget2.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">New iPhone News</a></span>
@@ -515,7 +456,7 @@
                     </div>
                     <div class="media">
                         <div class="pull-left">
-                            <img class="widget-img" src="assets/img/widget/widget3.jpg" alt="">
+                            <img class="widget-img" src="/assets/img/widget/widget3.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">Our Year In Review</a></span>
@@ -524,7 +465,7 @@
                     </div>
                     <div class="media">
                         <div class="pull-left">
-                            <img class="widget-img" src="assets/img/widget/widget4.jpg" alt="">
+                            <img class="widget-img" src="/assets/img/widget/widget4.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">jQuery Tutorial</a></span>
@@ -533,7 +474,7 @@
                     </div>
                     <div class="media">
                         <div class="pull-left">
-                            <img class="widget-img" src="assets/img/widget/widget5.jpg" alt="">
+                            <img class="widget-img" src="/assets/img/widget/widget5.jpg" alt="">
                         </div>
                         <div class="media-body">
                             <span class="media-heading"><a href="#">Sheen Interview</a></span>
@@ -565,7 +506,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> #}
 
 
 <script src="{{asset('assets/js/jquery.js')}}"></script>
@@ -586,9 +527,9 @@
     $(document).ready(function() {
         'use strict';
         jQuery('#headerwrap').backstretch([
-            "assets/img/bg/bg1.jpg",
-            "assets/img/bg/bg2.jpg",
-            "assets/img/bg/bg3.jpg"
+            "/assets/img/bg/bg1.jpg",
+            "/assets/img/bg/bg2.jpg",
+            "/assets/img/bg/bg3.jpg"
         ], {
             duration: 8000,
             fade: 500

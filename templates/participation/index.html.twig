@@ -8,17 +8,18 @@
   {% for event in events %}
     <li class="col-sm-3 col-xs-6 masonry-portfolio-item apps isotope-item mb30">
       <div class="hover-item">
-        <img src="{{asset('assets/img/homepages/agency-1.jpg')}}"
+      {# <img src="{{asset('assets/img/homepages/agency-1.jpg')}}" #}
+        <img src="{{ vich_uploader_asset (event, 'imageFile') }}"
           class="img-responsive smoothie"
           alt="" />
         <div class="overlay-item-caption smoothie"></div>
         <div class="hover-item-caption smoothie">
           <div class="vertical-center smoothie">
             <h3 class="smoothie mb30">
-              <a href="index-agency-1.html" title="view project">{{event.nomevenement}}</a>
+              <a href="{{ path ('evenement') }}" title="view project">{{event.nomevenement}}</a>
             </h3>
-            <a href="index-agency-1.html" class="smoothie btn btn-primary">
-              View
+            <a href="{{ path ('eventdetails', {id: event.id}) }}" class="smoothie btn btn-primary">
+              More
             </a>
           </div>
         </div>
