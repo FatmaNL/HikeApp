@@ -1,0 +1,123 @@
+{% extends "backoffice-base.html.twig" %}
+
+{% block title %}Welcome in HikeApp!{% endblock title %}
+
+{% block sidebar %}
+<div id="sidebar" class="nav-collapse ">
+  <!-- sidebar menu start-->
+  <ul class="sidebar-menu" id="nav-accordion">
+      <p class="centered">
+        <a href="profile.html">
+          <img src="img/ui-sam.jpg" class="img-circle" width="80">
+        </a>
+      </p>
+      <h5 class="centered">HikeApp Organisateur</h5>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('evenement') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Évènements</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('evenement') }}">Mes Évenements</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('sentier') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Sentiers</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('sentier') }}">Liste des Sentiers</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addsentier') }}">Nouveau Sentier</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('transport') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Transport</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('transport') }}">Liste des Transports</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addtransport') }}">Nouveau Transport</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Commandes</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Produits</span>
+          </a>
+      </li>
+      <li>
+          <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+          </a>
+      </li>
+  </ul>
+  <!-- sidebar menu end-->
+</div>
+{% endblock sidebar %}
+
+{% block main %}
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Les Sentiers</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-panel" style="padding: 20px">
+                  <h4><i class="fa fa-angle-right"></i>Liste des Sentiers</h4>
+                  <hr>
+                  <form method="post" action="{{ path('searchsentier') }}" class="form-horizontal style-form">
+                    <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">Recherche</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="search" class="form-control">
+                      </div>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Rechercher">
+                  </form>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Nom</td>
+                        <td>Durée</td>
+                        <td>Distance</td>
+                        <td>Difficulté</td>
+                        <td>Départ</td>
+                        <td>Destination</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr {% for s in sentier %}>
+                            <td>{{ s.nomsentier }}</td>
+                            <td>{{ s.duree }}</td>
+                            <td>{{ s.distance }}</td>
+                            <td>{{ s.difficulte }}</td>
+                            <td>{{ s.departsentier }}</td>
+                            <td>{{ s.destinationsentier }}</td>
+                            <td><a href="{{ path ('updatesentier',{'id':s.id}) }}">Modifier</a></td>
+                            <td><a href="{{ path ('deletesentier',{'id':s.id}) }}">Supprimer</a></td>
+                        </tr {% endfor %}>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock main %}

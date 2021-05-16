@@ -1,0 +1,135 @@
+{% extends "backoffice-base.html.twig" %}
+
+{% block title %}Welcome in HikeApp!{% endblock title %}
+
+{% block sidebar %}
+<div id="sidebar" class="nav-collapse ">
+  <!-- sidebar menu start-->
+  <ul class="sidebar-menu" id="nav-accordion">
+      <p class="centered">
+        <a href="profile.html">
+          <img src="img/ui-sam.jpg" class="img-circle" width="80">
+        </a>
+      </p>
+      <h5 class="centered">HikeApp Organisateur</h5>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('evenement') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Évènements</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('evenement') }}">Mes Évenements</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('sentier') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Sentiers</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('sentier') }}">Liste des Sentiers</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addsentier') }}">Nouveau Sentier</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('transport') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Transport</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('transport') }}">Liste des Transports</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addtransport') }}">Nouveau Transport</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Commandes</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Produits</span>
+          </a>
+      </li>
+      <li>
+          <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+          </a>
+      </li>
+  </ul>
+  <!-- sidebar menu end-->
+</div>
+{% endblock sidebar %}
+
+{% block main %}
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> Les Évènements</h3>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-panel" style="padding: 20px">
+                  <h4><i class="fa fa-angle-right"></i>Liste d'évenemets</h4>
+                  <hr>
+                  <form method="post" action="{{ path('search') }}" class="form-horizontal style-form">
+                    <div class="form-group">
+                      <label class="col-sm-2 col-sm-2 control-label">Recherche</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="search" class="form-control">
+                      </div>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Rechercher">
+                  </form>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nom</th>
+                        <th>Depart</th>
+                        <th>Destination</th>
+                        <th>Nombre de participants</th>
+                        <th>Date</th>
+                        <th>Durée</th>
+                        <th>Prix</th>
+                        <th>Programme</th>
+                        <th>Contact</th>
+                        <th>Informations</th>
+                        <th>Type</th>
+                        <th>Circuit</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr {% for e in evenement %}>
+                        <td>{{ e.nomevenement }}</td>
+                        <td>{{ e.depart }}</td>
+                        <td>{{ e.destination }}</td>
+                        <td>{{ e.nbparticipant }}</td>
+                        <td>{{ e.dateevenement| date('Y-m-d') }}</td>
+                        <td>{{ e.duree }}</td>
+                        <td>{{ e.prix }}</td>
+                        <td>{{ e.programme }}</td>
+                        <td>{{ e.contact }}</td>
+                        <td>{{ e.infos }}</td>
+                        <td>{{ e.type }}</td>
+                        <td>{{ e.circuit }}</td>
+                        <td><a href="{{ path ('updateevent',{'id':e.id}) }}">Modifier</a></td>
+                        <td><a href="{{ path ('delete',{'id':e.id}) }}">Supprimer</a></td>
+                      </tr {% endfor %}>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock main %}

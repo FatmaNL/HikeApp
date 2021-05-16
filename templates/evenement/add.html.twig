@@ -1,0 +1,147 @@
+{% extends "backoffice-base.html.twig" %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Nouvel Évenement{% endblock title %}
+
+{% block sidebar %}
+<div id="sidebar" class="nav-collapse ">
+  <ul class="sidebar-menu" id="nav-accordion">
+      <p class="centered">
+        <a href="profile.html">
+          <img src="{{asset('img/ui-sam.jpg')}}" class="img-circle" width="80">
+        </a>
+      </p>
+      <h5 class="centered">HikeApp Organisateur</h5>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('evenement') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Évènements</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('evenement') }}">Mes Évenements</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addevent') }}">Nouvel Évenement</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a class="active" href="{{ path ('sentier') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Sentiers</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('sentier') }}">Liste des Sentiers</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addsentier') }}">Nouveau Sentier</a></li>
+          </ul>
+      </li>
+			<li class="sub-menu">
+          <a class="active" href="{{ path ('transport') }}">
+              <i class="fa fa-dashboard"></i>
+              <span>Transport</span>
+          </a>
+          <ul class="sub" >
+              <li><a href="{{ path('transport') }}">Liste des Transports</a></li>
+          </ul>
+          <ul class="sub" >
+              <li><a href="{{ path('addtransport') }}">Nouveau Transport</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>Commandes</span>
+          </a>
+      </li>
+      <li class="sub-menu">
+          <a href="javascript:;">
+              <i class="fa fa-cogs"></i>
+              <span>Produits</span>
+          </a>
+      </li>
+      <li>
+          <a href="google_maps.html">
+              <i class="fa fa-map-marker"></i>
+              <span>Google Maps </span>
+          </a>
+      </li>
+  </ul>
+</div>
+{% endblock sidebar %}
+
+{% block main %}
+
+<section class="wrapper">
+	<h3><i class="fa fa-angle-right"></i> Les Évènements</h3>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="content-panel" style="padding: 15px">
+				{{ form_start(form, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+				{{ form_row(form.nomevenement,{'label' : 'Nom :'} , {'attr' : {'placeholder': 'Nom' }} ) }}
+
+
+				{# {{ form_errors(form.depart) }} #}
+				{{ form_label(form.depart, "Depart: ") }}
+				{{ form_widget(form.depart, {'attr' : {'placeholder': 'Depart' }})}}
+
+				{{ form_row(form.destination,{'label' : 'Destination :'} , {'attr' : {'placeholder': 'Destination' }} ) }}
+                
+                {{ form_widget(form.imageFile) }}
+
+				{{ form_row(form.nbparticipant,{'label' : 'Nombre des participants :'} , {'attr' : {'placeholder': 'participants' }} ) }}
+				{{ form_row(form.dateevenement,{'label' : 'Date :'}) }}
+				{{ form_row(form.duree,{'label' : 'Durée :'}, {'attr' : {'placeholder': 'Durée' }} ) }}
+				{{ form_row(form.prix,{'label' : 'Prix :'}, {'attr' : {'placeholder': 'Prix' }} ) }}
+				{{ form_row(form.programme,{'label' : 'Programme :'}, {'attr' : {'placeholder': 'Programme' }} ) }}
+				{{ form_row(form.contact,{'label' : 'Contact :'}, {'attr' : {'placeholder': 'Contact' }} ) }}
+				{{ form_row(form.infos,{'label' : 'Informations :'}, {'attr' : {'placeholder': 'Informations' }} ) }}
+				{{ form_row(form.type,{'label' : 'Type :'}, {'attr' : {'placeholder': 'Rando/Camp' }} ) }}
+				{{ form_row(form.circuit,{'label' : 'Circuit :'}, {'attr' : {'placeholder': 'Circuit' }} ) }}
+                
+				{{ form_end(form) }}
+
+                {# {{ form_start(formtransport, {'attr' : {'novalidate': 'novalidate' }}) }}
+
+                {{ form_row(formtransport.type,{'label' : 'Type :'} , {'attr' : {'placeholder': 'Type' }} ) }} #}
+
+				{# {{ form_errors(formupdate.depart) }} #}
+				{# {{ form_label(formtransport.volumemax, "Volume Max: ") }}
+				{{ form_widget(formtransport.volumemax, {'attr' : {'placeholder': 'Volume max' }})}}
+
+                {{ form_row(formtransport.nombreTransports,{'label' : 'Nombre :'} , {'attr' : {'placeholder': 'Nombre' }} ) }}
+
+				{{ form_end(formtransport) }} #}
+                
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock main %}
+
+{% block javascripts %}
+
+<script type="application/javascript">
+      //const $ = require('jquery');
+      $(document).ready(function(){
+        $('#evenement_type').change((event)=>{
+            console.log($(evenement_sentiers));
+           var type = $(event.target).val();
+            if (type === 'Randonnee'){
+                $('#evenement_sentiers')[0].parentElement.hidden=false;
+                $('#evenement_circuit')[0].parentElement.hidden=false;
+            }
+            else {
+                $('#evenement_sentiers')[0].parentElement.hidden=true;
+                $('#evenement_circuit')[0].parentElement.hidden=true;
+            }
+        }
+          
+        );
+      });
+</script>
+
+{% endblock javascripts %}

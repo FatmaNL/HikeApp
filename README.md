@@ -1,1 +1,6 @@
-# HikeApp!
+# HikeApp
+
+## Dependences
+
+compose install
+
