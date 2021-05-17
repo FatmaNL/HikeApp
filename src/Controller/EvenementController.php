@@ -82,13 +82,6 @@ class EvenementController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('evenement');
         }
-        /*$transportform->handleRequest($req);
-        if ($transportform->isSubmitted() && $transportform->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($transport);
-            $em->flush();
-            return $this->redirectToRoute('evenement');
-        }*/
         return $this->render('evenement/add.html.twig', 
         [ 
             'form' => $eventform->createView(),
@@ -134,6 +127,22 @@ class EvenementController extends AbstractController
         return $this->redirectToRoute('evenement');
     }
 
+    //DELETE api
+
+    /**
+     * @Route("api/deleteevenement/{id}", name="api_deleteevenement")
+     * @return Response
+     */
+    public function deleteEvenement($id, EvenementRepository $repo)
+    {
+        $evenement = $repo->findOneBy(['id' => $id]);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($evenement);
+        $em->flush();
+
+        return new Response("Evenement deleted!");
+    }
+
     /**
      * @Route("evenement/update/{id}",name="updateevent")
      */
@@ -150,6 +159,41 @@ class EvenementController extends AbstractController
         return $this->render('evenement/update.html.twig',[
             'formupdate'=>$form->createView()
         ]);
+    }
+    
+    //PUT api
+    /**
+     * @Route("api/updateevenement/{id}",name="api_updateevenement")
+     * @param Request $req
+     */
+    public function updateEvenement(EvenementRepository $repo,$id,Request $req){
+        try{
+            $evenement = $repo->findOneBy(['id' => $id]);
+            $data = json_decode($req->getContent(), true);
+
+            empty($data['nomevenement']) ? true : $evenement->setNomevenement($data['nomevenement']);
+            empty($data['depart']) ? true : $evenement->setDepart($data['depart']);
+            empty($data['destination']) ? true : $evenement->setDestination($data['destination']);
+            empty($data['nbparticipant']) ? true : $evenement->setNbparticipant($data['nbparticipant']);
+            empty($data['dateevenement']) ? true : $evenement->setDateevenement($data['dateevenement']);
+            empty($data['duree']) ? true : $evenement->setDuree($data['duree']);
+            empty($data['prix']) ? true : $evenement->setPrix($data['prix']);
+            empty($data['programme']) ? true : $evenement->setProgramme($data['programme']);
+            empty($data['contact']) ? true : $evenement->setContact($data['contact']);
+            empty($data['infos']) ? true : $evenement->setInfos($data['infos']);
+            empty($data['type']) ? true : $evenement->setType($data['type']);
+            empty($data['circuit']) ? true : $evenement->setCircuit($data['circuit']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($evenement);
+            $em->flush();
+            return $this->json($evenement, 200, [], ['groups'=>'eventgroup']);
+        } catch (NotEncodableValueException $e){
+            return $this->json([
+                'status'=> 400,
+                'message'=> $e->getMessage()
+            ], 400);
+        }
     }
 
     /**

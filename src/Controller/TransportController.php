@@ -7,6 +7,7 @@ use App\Form\TransportType;
 use App\Repository\TransportRepository;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -118,6 +119,22 @@ class TransportController extends AbstractController
         return $this->redirectToRoute('transport');
     }
 
+    //DELETE api
+
+    /**
+     * @Route("api/deletetransport/{id}", name="api_deletetransport")
+     * @return Response
+     */
+    public function deleteTransport($id, TransportRepository $repo)
+    {
+        $transport = $repo->findOneBy(['idtransport' => $id]);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($transport);
+        $em->flush();
+
+        return new Response("Transport deleted!");
+    }
+
     /**
      * @Route("transport/update/{id}",name="updatetransport")
      */
@@ -134,6 +151,32 @@ class TransportController extends AbstractController
         return $this->render('transport/updatetransport.html.twig',[
             'formupdatetr'=>$form->createView()
         ]);
+    }
+
+    //PUT api
+    /**
+     * @Route("api/updatetransport/{id}",name="api_updatetransport")
+     * @param Request $req
+     */
+    public function updateTransport(TransportRepository $repo,$id,Request $req){
+        try{
+            $transport = $repo->findOneBy(['idtransport' => $id]);
+            $data = json_decode($req->getContent(), true);
+
+            empty($data['type']) ? true : $transport->setType($data['type']);
+            empty($data['volumemax']) ? true : $transport->setVolumemax($data['volumemax']);
+            empty($data['nombre_transports']) ? true : $transport->setNombreTransports($data['nombre_transports']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($transport);
+            $em->flush();
+            return $this->json($transport, 200, [], ['groups'=>'transgroup']);
+        } catch (NotEncodableValueException $e){
+            return $this->json([
+                'status'=> 400,
+                'message'=> $e->getMessage()
+            ], 400);
+        }
     }
 
     /**

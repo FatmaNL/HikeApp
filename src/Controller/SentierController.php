@@ -115,11 +115,27 @@ class SentierController extends AbstractController
         return $this->redirectToRoute('sentier');
     }
 
+    //DELETE api
+
+    /**
+     * @Route("api/deletesentier/{id}", name="api_deletesentier")
+     * @return Response
+     */
+    public function deleteSentier($id, SentierRepository $repo)
+    {
+        $sentier = $repo->findOneBy(['idsentier' => $id]);
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($sentier);
+        $em->flush();
+
+        return new Response("Sentier deleted!");
+    }
+
     /**
      * @Route("sentier/update/{id}",name="updatesentier")
      */
-    public function update(SentierRepository $sent,$id,Request $req){
-        $sentier=$sent->find($id);
+    public function update(SentierRepository $repo,$id,Request $req){
+        $sentier=$repo->find($id);
         $form=$this->createForm(SentierType::class,$sentier);
         $form->add('Modifier',SubmitType::class);
         $form->handleRequest($req);
@@ -131,6 +147,35 @@ class SentierController extends AbstractController
         return $this->render('sentier/updatesentier.html.twig',[
             'formupdate'=>$form->createView()
         ]);
+    }
+
+    //PUT api
+    /**
+     * @Route("api/updatesentier/{id}",name="api_updatesentier")
+     * @param Request $req
+     */
+    public function updateSentier(SentierRepository $repo,$id,Request $req){
+        try{
+            $sentier = $repo->findOneBy(['idsentier' => $id]);
+            $data = json_decode($req->getContent(), true);
+
+            empty($data['nomsentier']) ? true : $sentier->setNomsentier($data['nomsentier']);
+            empty($data['duree']) ? true : $sentier->setDuree($data['duree']);
+            empty($data['distance']) ? true : $sentier->setDistance($data['distance']);
+            empty($data['difficulte']) ? true : $sentier->setDifficulte($data['difficulte']);
+            empty($data['departsentier']) ? true : $sentier->setDepartsentier($data['departsentier']);
+            empty($data['destinationsentier']) ? true : $sentier->setDestinationsentier($data['destinationsentier']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($sentier);
+            $em->flush();
+            return $this->json($sentier, 200, [], ['groups'=>'sentgroup']);
+        } catch (NotEncodableValueException $e){
+            return $this->json([
+                'status'=> 400,
+                'message'=> $e->getMessage()
+            ], 400);
+        }
     }
 
     /**
