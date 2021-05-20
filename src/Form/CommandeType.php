@@ -22,7 +22,7 @@ class CommandeType extends AbstractType
             ->add('etat',TextType::class, array('label'=>'état'))
            // ->add('produits',TextType::class)
            //->add('catName',TextType::class, array('label' => 'Category Name','attr' => array('class' => 'form-control', 'autocomplete'=>'off'),'data_class' => null))
-           //->add('captcha', CaptchaType::class);
+           ->add('captcha', CaptchaType::class);
 
 
         ;
