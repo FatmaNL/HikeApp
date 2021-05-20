@@ -17,12 +17,12 @@ class CommandeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('refcommande',TextType::class, array('label'=>'Lieu'))
+            ->add('refcommande',TextType::class, array('label'=>'référence'))
             ->add('datecommande',DateType::class, array('label'=>'Date '))
-            ->add('etat',TextType::class, array('label'=>'Description '))
+            ->add('etat',TextType::class, array('label'=>'état'))
            // ->add('produits',TextType::class)
            //->add('catName',TextType::class, array('label' => 'Category Name','attr' => array('class' => 'form-control', 'autocomplete'=>'off'),'data_class' => null))
-           ->add('captcha', CaptchaType::class);
+           //->add('captcha', CaptchaType::class);
 
 
         ;
