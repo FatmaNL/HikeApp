@@ -49,8 +49,10 @@ class SentierController extends AbstractController
     public function getSentiers(SentierRepository $sent, SerializerInterface $serializerInterface){
         $sentiers= $sent->findAll();
         $json=$serializerInterface->serialize($sentiers, 'json', ['groups'=>'sentgroup']);
-        dump($json);
-        die;
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -84,22 +86,22 @@ class SentierController extends AbstractController
      */
     public function addSentier(Request $req, SerializerInterface $serializerInterface, ValidatorInterface $validator){
         $content=$req->getContent();
-        try{
+        //try{
             $sentier=$serializerInterface->deserialize($content, Sentier::class,'json');
             $errors= $validator->validate($sentier);
-            if (count($errors) > 0) {
-                return $this->json($errors,400);
-            }
+            //if (count($errors) > 0) {
+            //    return $this->json($errors,400);
+            //}
             $em = $this->getDoctrine()->getManager();
             $em->persist($sentier);
             $em->flush();
             return $this->json($sentier, 201, [], ['groups'=>'sentgroup']);
-        } catch (NotEncodableValueException $e){
-            return $this->json([
-                'status'=> 400,
-                'message'=> $e->getMessage()
-            ], 400);
-        }
+        //} catch (NotEncodableValueException $e){
+           // return $this->json([
+           //     'status'=> 400,
+           //     'message'=> $e->getMessage()
+           // ], 400);
+        //}
     }
 
     /**

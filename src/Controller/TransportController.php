@@ -52,8 +52,11 @@ class TransportController extends AbstractController
     public function getTransports(TransportRepository $trans, SerializerInterface $serializerInterface){
         $transports= $trans->findAll();
         $json=$serializerInterface->serialize($transports, 'json', ['groups'=>'transgroup']);
-        dump($json);
-        die;
+        
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
 
@@ -84,26 +87,27 @@ class TransportController extends AbstractController
     //POST api
 
     /**
-     * @Route ("/api/addtransport", name="api_addtransport")
+     * @Route ("/api/addtransport", name="api_addtransport", methods={"POST"})
      */
     public function addTransport(Request $req, SerializerInterface $serializerInterface, ValidatorInterface $validator){
         $content=$req->getContent();
-        try{
+
+        //try{
             $transport=$serializerInterface->deserialize($content, Transport::class,'json');
-            $errors= $validator->validate($transport);
-            if (count($errors) > 0) {
-                return $this->json($errors,400);
-            }
+            //$errors= $validator->validate($transport);
+            // if (count($errors) > 0) {
+            //     return $this->json($errors,400);
+            // }
             $em = $this->getDoctrine()->getManager();
             $em->persist($transport);
             $em->flush();
             return $this->json($transport, 201, [], ['groups'=>'transgroup']);            
-        } catch (NotEncodableValueException $e){
-            return $this->json([
-                'status'=> 400,
-                'message'=> $e->getMessage()
-            ], 400);
-        }
+        //} catch (NotEncodableValueException $e){
+            //return $this->json([
+                //'status'=> 400,
+                //'message'=> $e->getMessage()
+            //], 400);
+        //}
     }
 
     /**
@@ -122,7 +126,7 @@ class TransportController extends AbstractController
     //DELETE api
 
     /**
-     * @Route("api/deletetransport/{id}", name="api_deletetransport")
+     * @Route("api/deletetransport/{id}", name="api_deletetransport", methods={"DELETE"})
      * @return Response
      */
     public function deleteTransport($id, TransportRepository $repo)

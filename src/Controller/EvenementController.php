@@ -51,8 +51,10 @@ class EvenementController extends AbstractController
     public function getEvenements(EvenementRepository $event, SerializerInterface $serializerInterface){
         $evenements= $event->findAll();
         $json=$serializerInterface->serialize($evenements, 'json', ['groups'=>'eventgroup']);
-        dump($json);
-        die;
+        $response = new Response($json);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -92,26 +94,26 @@ class EvenementController extends AbstractController
     //POST api
 
     /**
-     * @Route ("/api/addevenement", name="api_addevenement")
+     * @Route ("/api/addevenement", name="api_addevenement", methods={"POST"})
      */
     public function addEvenement(Request $req, SerializerInterface $serializerInterface, ValidatorInterface $validator){
         $content=$req->getContent();
-        try{
-        $evenement=$serializerInterface->deserialize($content, Evenement::class,'json');
-        $errors= $validator->validate($evenement);
-        if (count($errors) > 0) {
-            return $this->json($errors,400);
-        }
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($evenement);
-        $em->flush();
-        return $this->json($evenement, 201, [], ['groups'=>'eventgroup']);
-        }catch(NotEncodableValueException $e){
-            return $this->json([
-                'status'=> 400,
-                'message'=> $e->getMessage()
-            ], 400);
-        }
+        //try{
+            $evenement=$serializerInterface->deserialize($content, Evenement::class,'json');
+            $errors= $validator->validate($evenement);
+            //if (count($errors) > 0) {
+            //    return $this->json($errors,400);
+            //}
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($evenement);
+            $em->flush();
+            return $this->json($evenement, 201, [], ['groups'=>'eventgroup']);
+        //}catch(NotEncodableValueException $e){
+        //    return $this->json([
+        //        'status'=> 400,
+        //        'message'=> $e->getMessage()
+        //    ], 400);
+        //} 
     }
 
     /**
