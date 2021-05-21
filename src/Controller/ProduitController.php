@@ -43,6 +43,7 @@ class ProduitController extends AbstractController
         $em->remove($produit);
         $em->flush();
 
+
         return $this->redirectToRoute('afficheProduit');
     }
 
@@ -51,7 +52,6 @@ class ProduitController extends AbstractController
      * @return Response
      * @Route ("produit/addproduit",name="addproduit")
      */
-
     public function add(Request $request){
         $produit=new Produit();
         $form=$this->createForm(ProduitType::class,$produit);
@@ -94,7 +94,7 @@ class ProduitController extends AbstractController
     public function recherche(ProduitRepository $repo,Request $request){
         $data=$request->get('search');
         $produit=$repo->findBy(['nomproduit'=>$data]);
-        return $this->render('produit/index.html.twig',
+        return $this->render('produit/afficheProduit.twig',
             ['produit'=>$produit]);
     }
 

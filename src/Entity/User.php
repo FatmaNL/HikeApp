@@ -94,16 +94,19 @@ class User implements UserInterface
      */
     private $status ='DESACTIVE';
 
-    
-    public function getCin(): ?int
-    {
-        return $this->cin;
-    }
-    public function setCin(string $cin): self
-    {
-        $this->cin = $cin;
+    /**
+     * @ORM\OneToMany(targetEntity=Forum::class, mappedBy="User",orphanRemoval=true)
+     */
+    private $Forum;
 
-        return $this;
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="User",orphanRemoval=true)
+     */
+    private $userRep;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
     }
 
     public function getEmail(): ?string
