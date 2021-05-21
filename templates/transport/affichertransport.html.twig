@@ -73,13 +73,13 @@
 
 {% block main %}
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Les Évènements</h3>
+        <h3><i class="fa fa-angle-right"></i> Les Sentiers</h3>
         <div class="row">
             <div class="col-md-12">
                 <div class="content-panel" style="padding: 20px">
-                  <h4><i class="fa fa-angle-right"></i>Liste d'évenemets</h4>
+                  <h4><i class="fa fa-angle-right"></i>Liste des Sentiers</h4>
                   <hr>
-                  <form method="post" action="{{ path('search') }}" class="form-horizontal style-form">
+                  <form method="post" action="{{ path('searchtransport') }}" class="form-horizontal style-form">
                     <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Recherche</label>
                       <div class="col-sm-10">
@@ -91,40 +91,22 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Nom</th>
-                        <th>Depart</th>
-                        <th>Destination</th>
-                        <th>Nombre de participants</th>
-                        <th>Date</th>
-                        <th>Durée</th>
-                        <th>Prix</th>
-                        <th>Programme</th>
-                        <th>Contact</th>
-                        <th>Informations</th>
-                        <th>Type</th>
-                        <th>Circuit</th>
-                        <th></th>
-                        <th></th>
+                        <td>Type</td>
+                        <td>Volume Max</td>
+                        <td>Nombre</td>
+                        <td></td>
+                        <td></td>
                       </tr>
                     </thead>
 
                     <tbody>
-                      <tr {% for e in evenement %}>
-                        <td>{{ e.nomevenement }}</td>
-                        <td>{{ e.depart }}</td>
-                        <td>{{ e.destination }}</td>
-                        <td>{{ e.nbparticipant }}</td>
-                        <td>{{ e.dateevenement| date('Y-m-d') }}</td>
-                        <td>{{ e.duree }}</td>
-                        <td>{{ e.prix }}</td>
-                        <td>{{ e.programme }}</td>
-                        <td>{{ e.contact }}</td>
-                        <td>{{ e.infos }}</td>
-                        <td>{{ e.type }}</td>
-                        <td>{{ e.circuit }}</td>
-                        <td><a href="{{ path ('updateevent',{'id':e.id}) }}">Modifier</a></td>
-                        <td><a href="{{ path ('delete',{'id':e.id}) }}">Supprimer</a></td>
-                      </tr {% endfor %}>
+                        <tr {% for t in transport %}>
+                            <td>{{ t.type }}</td>
+                            <td>{{ t.volumemax }}</td>
+                            <td>{{ t.nombreTransports }}</td>
+                            <td><a href="{{ path ('updatetransport',{'id':t.id}) }}">Modifier</a></td>
+                            <td><a href="{{ path ('deletetransport',{'id':t.id}) }}">Supprimer</a></td>
+                        </tr {% endfor %}>
                     </tbody>
                   </table>
                 </div>
