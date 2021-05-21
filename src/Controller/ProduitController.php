@@ -123,6 +123,7 @@ class ProduitController extends AbstractController
         $nomproduit = $request->query->get("nomproduit");
         $quantite = $request->query->get("quantite");
         $prix = $request->query->get("prix");
+        $image = $request->query->get("image");
         /*$idcat = $request->query->get("cat");
         $nomcat = $request->query->get("cat_name");
 
@@ -153,6 +154,7 @@ class ProduitController extends AbstractController
             $produit->setNomproduit($nomproduit);
             $produit->setQuantite($quantite);
             $produit->setPrix($prix);
+            $produit->setImage($image);
            /* $produit->setImage($newFilename);*/
             $em->persist($produit);
             $em->flush();
