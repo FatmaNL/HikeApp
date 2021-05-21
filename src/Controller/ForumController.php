@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class ForumController extends AbstractController
 {
@@ -118,7 +120,7 @@ class ForumController extends AbstractController
      * @Route("/forum/{id}/{comment}", name="add_comment_forum")
      */
 
-    public function addComment(ForumRepository $repo,ReponseRepository $reponse,SerializerInterface $serializer,$id,$comment)
+    public function addComment(ForumRepository $repo, ReponseRepository $reponse, SerializerInterface $serializer, $id, $comment)
     {
 
         $commentaire = new Reponse();
@@ -132,8 +134,8 @@ class ForumController extends AbstractController
         $em->flush();
         $comments = $reponse->findAll();
         $final_comments = array();
-        foreach($comments as $c){
-            array_push($final_comments,["description"=>$c->getDescription(), "date"=>$c->getDate()]);
+        foreach ($comments as $c) {
+            array_push($final_comments, ["description" => $c->getDescription(), "date" => $c->getDate()]);
         }
 
 
@@ -143,11 +145,11 @@ class ForumController extends AbstractController
 
     }
 
-        /**
+    /**
      * @Route("/forum/{id}", name="forum")
      */
 
-    public function afficheforum (ForumRepository $repo,ReponseRepository $reponse,$id)
+    public function afficheforum(ForumRepository $repo, ReponseRepository $reponse, $id)
     {
         $comments = $reponse->findAll();
 
@@ -155,9 +157,95 @@ class ForumController extends AbstractController
 
         return $this->render('forum/index.html.twig', [
 
-            'forum' => $forum, 'comments'=>$comments]);
+            'forum' => $forum, 'comments' => $comments]);
+    }
+
+    /**
+     * @Route("/ajouterForum", name="add_reclamation")
+     */
+
+    public function ajouterForum(Request $request)
+    {
+        $ajouter = new Forum();
+        $sujet = $request->query->get("sujet");
+        $description = $request->query->get("description");
+        $em = $this->getDoctrine()->getManager();
+        $date = new \DateTime('now');
+        $status = $request->query->get("status");
+
+
+        $ajouter->setSujet($sujet);
+        $ajouter->setDescription($description);
+        $ajouter->setStatus($status);
+
+        $em->persist($ajouter);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($ajouter);
+        return new JsonResponse($formatted);
+
+    }
+
+    /**
+     * @Route("/supprimerForum", name="delete_forum")
+     */
+
+    public function supprimerForumAction(Request $request)
+    {
+        $id = $request->get("id");
+
+        $em = $this->getDoctrine()->getManager();
+        $forum = $em->getRepository(Forum::class)->find($id);
+        if ($forum != null) {
+            $em->remove($forum);
+            $em->flush();
+
+            $serialize = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serialize->normalize("Forum a ete supprimee avec success.");
+            return new JsonResponse($formatted);
+
+        }
+        return new JsonResponse("id forum invalide.");
+
+
+    }
+
+    /**
+     * @Route("/displayForum", name="display_forum")
+     */
+    public function allRecAction()
+    {
+
+        $forum = $this->getDoctrine()->getManager()->getRepository(Forum::class)->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($forum);
+
+        return new JsonResponse($formatted);
+
+    }
+
+    /**
+     * @Route("/updateForum", name="update_forum")
+     */
+    public function modifierForum(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $forum = $this->getDoctrine()->getManager()
+            ->getRepository(Forum::class)
+            ->find($request->get("id"));
+
+        $forum->setSujet($request->get("sujet"));
+        $forum->setDescription($request->get("description"));
+
+        $em->persist($forum);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($forum);
+        return new JsonResponse("Forum a ete modifiee avec success.");
+
     }
 }
+
 
 
 
