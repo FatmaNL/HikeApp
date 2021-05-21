@@ -44,9 +44,6 @@ class Categorie
         $this->produits = new ArrayCollection();
     }
 
-    
-    
-    
     public function getId(): ?int
     {
         return $this->idcategorie;

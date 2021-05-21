@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class ProduitControllerFrontController extends AbstractController
 {
@@ -62,12 +65,15 @@ class ProduitControllerFrontController extends AbstractController
         $produit=$repo->find($id);
         $rates = $ratings->findBy(array('idproduit'=>$id));
         $rates_number = count($rates);
+        dd($rates_number);
         $average=0;
         
         foreach($rates as $r){
             
             $average+=$r->getRate();
+          
         }
+        
         $average= $average / $rates_number;
        //dd($produit);
         return $this->render('produit_controller_front/produit.html.twig', [
@@ -75,6 +81,29 @@ class ProduitControllerFrontController extends AbstractController
         ]);
     }
     
+/* detail with json */
+
+ /**
+     * @Route("/produitClient/prodjson/{id}", name="produitjson")
+     */
+    public function affichepjson(ProduitRepository $repo,RatingRepository $ratings,$id)
+    {
+       
+        $produit=$repo->find($id);
+        
+        $encoder = new JsonEncoder();
+         $normalizer = new ObjectNormalizer();
+         $normalizer->setCircularReferenceHandler(function ($object) {
+             return $object->getDescription();
+         });
+         $serializer = new Serializer([$normalizer], [$encoder]);
+         $formatted = $serializer->normalize($produit);
+         return new JsonResponse($formatted);
+       
+       //dd($produit);
+        
+    }
+
 /**
    * @Route("/produitClient/prod/rate/{id}/{rating}", name="rate_produit")
    * @param $id
